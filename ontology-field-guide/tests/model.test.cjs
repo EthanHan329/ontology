@@ -1,11 +1,31 @@
-const {test}=require('node:test');const assert=require('node:assert/strict');const {evaluate,validate}=require('../dist/model.js');
-test('due-day equality is on time and the default delay threatens only first order',()=>{const r=evaluate(3,0);assert.equal(r.risk,72000);assert.deepEqual(r.late.map(o=>o.id),['ORD-1042'])});
-test('five-day disruption can be covered with 320 alternate units',()=>{const r=evaluate(5,320);assert.equal(r.risk,0);assert.equal(r.rescued.length,2);assert.equal(r.used,320);assert.equal(r.cost,3840)});
-test('severe disruption leaves the third order exposed',()=>{const r=evaluate(7,320);assert.equal(r.risk,40000);assert.equal(r.unresolved[0].id,'ORD-1044')});
-test('whole-order policy can skip a large order and protect a smaller later one',()=>{const r=evaluate(7,140);assert.deepEqual(r.rescued.map(o=>o.id),['ORD-1043']);assert.equal(r.risk,112000)});
-test('no delay produces zero risk and surplus still incurs transport cost',()=>{const r=evaluate(0,320);assert.equal(r.risk,0);assert.equal(r.used,0);assert.equal(r.cost,3840)});
-const valid={role:'planner',quantity:180,reason:'Protect commitments',committed:false};
-test('planner valid submission passes',()=>assert.equal(validate(valid),null));
-test('analyst cannot submit',()=>assert.match(validate({...valid,role:'analyst'}),/Denied/));
-test('stock is bounded, quantities are positive integers',()=>{for(const q of [-1,0,1.5,340,500,NaN])assert.ok(validate({...valid,quantity:q}));assert.equal(validate({...valid,quantity:320}),null)});
-test('empty or short reasons and repeated submissions are rejected',()=>{assert.ok(validate({...valid,reason:'  '}));assert.ok(validate({...valid,reason:'short'}));assert.match(validate({...valid,committed:true}),/already/)});
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const {baseline,parseAmount,evaluate,validate}=require('../dist/model.js');
+const valid={role:'customer',amount:11500,available:160000,bill:'Unpaid'};
+test('decimal amounts convert exactly into integer cents',()=>{
+  assert.equal(parseAmount('115.00'),11500);
+  assert.equal(parseAmount('0.29'),29);
+  assert.equal(parseAmount('1.2'),120);
+});
+test('ambiguous, excessive precision and unsafe amounts are rejected',()=>{
+  for(const value of ['-1','1.001','1e2','Infinity','NaN','',' 115','900719925474099999',null,115])assert.ok(Number.isNaN(parseAmount(value)));
+});
+test('baseline payment preserves USD 585 after rent and USD 85 buffer headroom',()=>{
+  assert.deepEqual(evaluate(baseline.available),{available:160000,amount:11500,remaining:58500,headroom:8500,permitted:true});
+});
+test('exact buffer equality is allowed and a one-cent breach is rejected',()=>{
+  assert.equal(validate({...valid,available:151500}),'');
+  assert.match(validate({...valid,available:151499}),/breach/);
+});
+test('current funds reject an approved plan after competing USD 100 spend',()=>{
+  assert.equal(validate(valid),'');
+  assert.match(validate({...valid,available:150000}),/breach/);
+});
+test('read-only authority cannot create a payment proposal',()=>assert.match(validate({...valid,role:'reader'}),/Denied/));
+test('the exact full bill amount is required',()=>{
+  for(const amount of [0,11499,11501,11500.5,NaN])assert.match(validate({...valid,amount}),/exact/);
+});
+test('already paid bills cannot be paid again',()=>assert.match(validate({...valid,bill:'Paid'}),/already paid/));
+test('missing and noninteger balance observations fail closed',()=>{
+  for(const available of [undefined,NaN,-1,160000.5])assert.match(validate({...valid,available}),/valid current/);
+});

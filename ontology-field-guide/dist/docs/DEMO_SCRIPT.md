@@ -1,90 +1,124 @@
-# A five-minute Ontology demonstration
+# A five-minute agentic banking Ontology demonstration
 
-Audience: a technical or business audience learning the concept. All figures are fictional. Open the local `dist/index.html` file. No server or internet connection is needed. Use a desktop viewport for the graph; the layout also adapts to mobile.
+Audience: people studying Palantir Ontology through everyday banking. Every chapter uses the same fictional customer, accounts, bill, payee and payment lifecycle. All data and policy are teaching examples.
 
-## 0:00–0:40 — State the operational problem
+Open the local HTML file, dist/index.html. No server, installation, account or internet connection is required. The demo is deterministic, with no live AI or bank integration.
 
-Open **The big picture**.
+## 0:00–0:35 — Start with customer intent
 
-“A shipment is delayed. Logistics knows the movement, the warehouse knows alternate stock, and sales knows the promises. The decision requires a connected view of all three. This field guide shows the model, the decision logic, and the controlled path to action.”
+Open **Everyday banking**.
 
-Point to the semantic, kinetic, and governance explanations.
+“Alex says: pay my electricity bill, keep enough for rent, and leave a USD 500 buffer. An agent needs more than words. It needs a customer, account rights, a current balance, a bill, a verified destination and permission to act.”
 
-## 0:40–1:30 — Reveal the shared business model
+Switch the request selector between balance summary, bill payment, savings transfer and lost-card response. All four reuse the same business vocabulary. Only bill payment executes simulated actions.
 
-Open **Explore the model**. Select the shipment, then the part, then the order. Use the table's Inspect buttons if presenting with keyboard navigation.
+## 0:35–1:05 — Explain the mental model
 
-“Each node is a business object with identity. A link says how business entities relate. The graph lets us trace consequences.”
+Open **The mental model**.
 
-Switch to **Type definitions**, then back to **Object instances**.
+Point to semantics, kinetics and governance.
 
-“CustomerOrder is a reusable definition. ORD-1042 is one actual commitment. Apps and calculations can reuse the same contract.”
+“Objects tell us what exists. Functions and actions tell us what we can calculate and change. Governance tells us whose data we can see and which operations we may execute.”
 
-Explain that the five-node model is simplified. A richer model uses OrderLine, ShipmentLine, and Allocation objects when relationships need quantities and status.
+Select Account and Bill in the graph. Explain that the graph is a simplified view, not the complete schema.
 
-## 1:30–2:40 — Make consequences visible
+## 1:05–1:45 — Separate type from instance
 
-Open **From insight to action**.
+Open **Banking objects**.
 
-Set delay to **5 days** and leave allocation at **320 units**.
+Inspect Account ACC-101, switch to **Type definitions**, and show accountId, currency and ledgerCents. Search for Consent and inspect proposalId, approvedAt and expiresAt. Return to instances and search for BILL-301.
 
-“Base arrival is day 2, so the revised arrival is day 7. The first two orders, due on days 3 and 5, are at risk. Their revenue totals $128,000. Under our toy policy, 320 alternate units protect both for $3,840.”
+“Account is a type; ACC-101 is one instance. AccountOwnership has rights and effective dates of its own. A payment instruction is a command, while a transaction is a posted outcome.”
 
-Move allocation to **180**. The first order is protected; $56,000 remains exposed. Move it back to **320**.
+The explorer covers sixteen candidate types. The six-node diagram uses a direct ownership edge as shorthand for the AccountOwnership object.
 
-“This is a transparent calculation, not an AI prediction. The preview has not reserved inventory.”
+## 1:45–2:35 — Calculate, then test authority
 
-## 2:40–3:40 — Show governance and a real state transition
+Open **Payment lifecycle**, and reset if necessary.
 
-Choose **Analyst — read only**, then click **Apply reallocation**.
+Show the initial USD 1,600 available balance, USD 115 bill, USD 900 rent and USD 500 buffer.
 
-“Being allowed to see inventory is different from being allowed to change it.”
+“After bill and rent, USD 585 remains. That exceeds the buffer by USD 85. This is a transparent calculation, not a prediction.”
 
-Observe the denial and rejection log. Return to **Operations planner**. Optionally move quantity to **340**, apply, and show the insufficient-stock rejection. Restore **320**, retain a meaningful reason, and apply.
+Choose **Read-only assistant**, then **Create proposal**. Show the denial.
 
-Observe the applied state, zero available alternate stock, and decision log.
+“Being able to see a balance does not grant payment authority.”
 
-“The action captures a business operation: validation, local state changes, and a recorded integration request. This browser only simulates it.”
+Choose **Customer with payment authority**, create a proposal and review the exact account, payee, amount and bill. Check the approval box.
 
-Point to **ERP acknowledgment pending**.
+## 2:35–3:10 — Make stale evidence visible
 
-“Local success is different from confirmed external fulfillment. A production implementation needs acknowledgment, failure handling, and reconciliation.”
+Click **Simulate another $100 card spend**, then submit.
 
-## 3:40–4:30 — Explain architecture and AI
+“The earlier proposal passed, but funds changed. Now USD 1,500 minus 115 minus 900 leaves USD 485. The action must recheck current state and reject the buffer breach.”
 
-Open **Under the surface**. Show the four layers. Expand the transaction and AI questions.
+The bill remains unpaid; no instruction is submitted.
 
-“Integration and indexing make data usable. The shared model gives business meaning. Logic evaluates choices. Actions express permitted changes. AI can use that context and those tools, but its proposal still needs the workflow's authorization and validation.”
+Reset the banking demo before proceeding.
 
-Do not claim that human review is mandatory in every AIP workflow. It is a configurable workflow design choice.
+## 3:10–4:00 — Submit once, then reconcile
 
-## 4:30–5:00 — Prove understanding
+Create and approve a fresh proposal. Submit.
 
-Open **Test your understanding**. Answer the ERP transaction question and the read-versus-write question. Show the Markdown guide and research library.
+Show:
+- Available funds USD 1,485.
+- New reservation USD 115.
+- Instruction Queued.
+- Bill Unpaid.
+- No posted transaction for the bill.
 
-“The point is the entire loop: shared context, evaluated decision, governed change, and observed outcome.”
+“The request is accepted locally, but settlement is pending. A queued instruction is not proof of payment.”
 
-## Backup numbers
+Navigate briefly to **The mental model** or **Banking objects**. Inspect Account and Bill to show the same state. Return to **Payment lifecycle** and simulate settlement.
 
-| Delay | Arrival | At-risk orders before allocation | Revenue at risk | After 320-unit allocation |
-| --- | --- | --- | ---: | ---: |
-| 0 | Day 2 | None | $0 | $0 |
-| 3 | Day 5 | ORD-1042 | $72,000 | $0 |
-| 5 | Day 7 | ORD-1042, ORD-1043 | $128,000 | $0 |
-| 7 | Day 9 | All three | $168,000 | $40,000 |
+Show Settled, Paid and TXN-901. Available funds remain USD 1,485.
 
-A 320-unit allocation costs $3,840. At a three-day delay, 180 units achieve the same protected revenue at $2,160. Use this to discuss why extra allocation is not automatically optimal.
+“Posting replaces the reservation. It must not deduct the same amount twice.”
 
-## Likely questions
+## 4:00–4:35 — Explain the failure boundary
 
-**Is this Palantir?** The concepts are researched from Palantir's public docs. The interface and code are an independent educational simulation.
+Reset, propose, approve and submit again. Simulate failure.
 
-**Is the graph the Ontology?** It is one useful view. The operational contract also includes properties, logic, action definitions, and access behavior.
+Show USD 1,600 restored, the bill Unpaid, no posted transaction, and fresh approval required for retry.
 
-**Does the action update ERP?** Only an explicitly configured integration can do that. This demo logs a simulated request and leaves acknowledgment pending.
+“This control means definitive failure. A timeout is different: the outcome may be unknown, so reconcile the existing instruction before retrying.”
 
-**Is this using a real LLM?** No. The workbench runs deterministic local calculations. AI architecture is explained separately.
+Open **Banking architecture**. Point to the separate sources, object model, decision layer and payment service / ledger.
 
-**Are the numbers ROI?** No. They are fictional revenue exposure and a simplified transport charge, not realized savings or margin.
+“Ontology object edits and external money movement do not share an automatic distributed transaction.”
 
-**Can I build this in Foundry?** Use the richer schema and action design as a starting point, then validate exact capabilities and APIs in your enrollment.
+## 4:35–5:00 — Test and extend the model
+
+Open **Test your understanding**. Answer one consent or settlement question. Show the eight checks and the seven-session study path.
+
+Open **Research & evidence** and the Markdown study guide.
+
+“The sources establish Ontology primitives. The sixteen banking types, USD 500 buffer and tool contracts are our application design. The local simulator is not a security boundary or payment system.”
+
+## Rehearsal reference
+
+| Scenario | Available funds | Remaining after bill and rent | Expected result |
+| --- | ---: | ---: | --- |
+| Initial observation | USD 1,600 | USD 585 | Proposal permitted for the authorized customer. |
+| Another USD 100 spend | USD 1,500 | USD 485 | Rejected at current-state check. |
+| Valid queued payment | USD 1,485 | Reservation already counted | Bill unpaid, USD 115 reserved, no posting yet. |
+| Confirmed settlement | USD 1,485 | Do not debit again | Reservation converted to posted TXN-901; bill paid. |
+| Definitive failure from baseline | USD 1,600 | No new payment debit | Reservation released; bill unpaid. |
+
+## Questions to be ready for
+
+**Is the agent live?** No. The workflow uses deterministic local rules and fictional data.
+
+**Is this Palantir software?** No. It teaches platform concepts using a standalone HTML application.
+
+**Can a read-only assistant ever propose?** A production design may permit nonexecuting proposals. This demo's simpler teaching policy denies proposal creation to that role.
+
+**What happens if I change the amount after approval?** The proposal and consent are cleared. This action only pays the exact USD 115 bill.
+
+**Does source data update automatically?** No. External updates require explicit integration and source ownership rules.
+
+**Does this implement production payment safety?** No. Trusted authorization, atomic funds reservation, durable idempotency, ledger posting, consent expiry and reconciliation require real services.
+
+**Does anything leave the machine?** The demo performs no network calls. Optional research links open only when followed. No project files are uploaded by running it.
+
+See the [study guide](STUDY_GUIDE.md), [banking walkthrough](AGENTIC_BANKING.md), [evidence map](RESEARCH.md), and [implementation notes](IMPLEMENTATION.md).

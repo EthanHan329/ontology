@@ -1,6 +1,6 @@
 # Research notebook and evidence map
 
-Reviewed 21 October 2026. Scope: Palantir's public Foundry documentation, with attention to semantics, operations, permissions, and application / AIP integration. This is a documentation synthesis, not an independent performance benchmark or hands-on validation inside a Foundry enrollment.
+Reviewed 21 October 2026. Scope: Palantir's public Foundry documentation, applied throughout this guide to a fictional agentic everyday banking model. This is a documentation synthesis, not a banking product assessment, independent performance benchmark or hands-on validation inside a Foundry enrollment.
 
 ## Method
 
@@ -45,7 +45,22 @@ A source's web crawl date does not establish when a feature became available. Pu
 
 ## Interpretation versus vendor fact
 
-The supply-chain schema, allocation algorithm, policy matrix, reliability recommendations, study schedule, comparison table, and assessment rubric are original teaching material. They illustrate consequences of the documented primitives. They are not claims about automatic platform behavior or real customer outcomes.
+The sixteen-type banking schema, integer-cent buffer calculation, exact-consent policy, payment lifecycle, access matrix, reliability recommendations, study schedule, comparison table and assessment rubric are original teaching material. They illustrate consequences of the documented primitives. They are not claims about automatic platform behavior, banking compliance or real customer outcomes.
+
+## Banking claim-to-evidence map
+
+| Teaching claim | Platform foundation | Original application design / limit |
+| --- | --- | --- |
+| Account is a type; ACC-101 is an instance | S02, S03 | Names, fields and identifiers are fictional. |
+| AccountOwnership carries relationship rights | S03, S04 | The relationship object and rights policy are our modeling choice. |
+| A function computes remaining funds | S08, S09 | USD 1,600 − 115 − 900 = 585 is the demo's deterministic rule. |
+| An action has submission checks and effects | S05–S07 | Exact bill amount, customer approval and the USD 500 buffer are our policy. |
+| Read access differs from payment authority | S06, S14 | No real authentication or signing-rights enforcement is implemented. |
+| A queued instruction differs from settlement | S12, S13 | Instruction, reservation, bill and transaction states are illustrative; no bank is connected. |
+| An agent uses scoped objects and tools | S16, S17 | Banking tool names are candidate contracts, not built-in SDK methods. |
+| Downstream data needs deliberate protection | S14, S15 | Production log, export and model-context controls are outside this simulator. |
+
+Every HTML chapter, quiz, study exercise and presentation uses this same banking example. The initial graph is simplified, while the explorer exposes all sixteen candidate types. Balance summary, savings transfer and card-freeze journeys are conceptual; bill payment alone has executable local simulation.
 
 The application demonstrates no real Palantir integration, identity enforcement, object indexing, model inference, persistence, distributed transaction, or AI execution. The labels identify these boundaries throughout the interface.
 

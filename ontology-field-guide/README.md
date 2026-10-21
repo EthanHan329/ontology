@@ -1,30 +1,49 @@
-# Ontology Field Guide
+# Ontology Field Guide: agentic everyday banking
 
-An independent, primary-source-backed learning experience for Palantir's Ontology. Includes a responsive HTML demo, interactive object graph, disruption simulator, action-policy demonstration, architecture notes, knowledge checks, and Markdown study material.
+An offline, independent study of Palantir Ontology through one consistent banking model. Every HTML chapter and Markdown guide uses the same customer, accounts, electricity bill, payee, proposal, consent and payment lifecycle.
 
-## Open
+## Open locally
 
-Open [dist/index.html](dist/index.html) directly in your browser. Everything runs offline: no installation, hosting, account, or internet connection is required.
+Open [dist/index.html](dist/index.html) directly. No build, installation, hosting, account or internet connection is required.
 
-An optional local HTTP server is also available:
+The seven chapters cover:
 
-```bash
-python3 -m http.server 8765 --directory dist
-```
+1. Everyday banking: sixteen object types and four customer journeys.
+2. The mental model: semantics, kinetics and governance.
+3. Banking objects: searchable schema and instance explorer.
+4. Payment lifecycle: exact proposal, approval, current-state validation, reservation, settlement and failure.
+5. Banking architecture: source ownership, permissions and external execution boundaries.
+6. Test your understanding: eight questions and a seven-session study path.
+7. Research & evidence: twenty-one optional primary-source references.
 
-## Study
+All chapters share one in-memory payment scenario. The default calculation preserves USD 585 after the USD 115 bill and USD 900 rent, satisfying a USD 500 buffer. A competing-spend control demonstrates stale-balance rejection.
 
-- [Study guide](dist/docs/STUDY_GUIDE.md)
-- [Research and source map](dist/docs/RESEARCH.md)
-- [Five-minute demo script](dist/docs/DEMO_SCRIPT.md)
-- [Implementation and verification](dist/docs/IMPLEMENTATION.md)
+## Study and present
 
-Research reviewed 21 October 2026. All demo entities, policies, and numbers are fictional. No Palantir connection or live AI is required.
+- [Complete banking Ontology study guide](dist/docs/STUDY_GUIDE.md)
+- [Banking objects, customer journeys and worked example](dist/docs/AGENTIC_BANKING.md)
+- [Five-minute banking presentation](dist/docs/DEMO_SCRIPT.md)
+- [Research and banking evidence map](dist/docs/RESEARCH.md)
+- [Implementation, checks and limitations](dist/docs/IMPLEMENTATION.md)
 
-## Local-only policy
-
-Do not publish, deploy, upload source to a hosting service, or create a hosted copy. Research citations are optional outbound links; they are never loaded automatically. Fonts and application assets are local.
+The banking schema and policies are fictional application design. There is no live AI, bank connection, production authorization, ledger or payment processing. Navigation preserves state; reset or refresh starts over.
 
 ## Offline checks
 
-With Node.js and Python already installed, run `npm test`. No `npm install` is needed; the DOM test library and its license notices are included under `tests/vendor/`.
+With Node.js and Python installed, run:
+
+~~~bash
+npm test
+~~~
+
+No npm install is required. Test dependencies and license notices are included locally under tests/vendor/. The suite checks the banking calculation, seven chapter DOMs, shared workflow state, exact consent, failure paths, quiz, documentation and offline assets. Browser screenshot and Lighthouse verification remain unavailable.
+
+## Local-only policy
+
+Do not publish, deploy, upload source, or create a hosted copy. Runtime assets are local and network connections are blocked by the Content Security Policy. Optional research citations load only when explicitly followed. No hosting action is part of this update.
+
+An optional localhost server can be started with:
+
+~~~bash
+python3 -m http.server 8765 --directory dist
+~~~

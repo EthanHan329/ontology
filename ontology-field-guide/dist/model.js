@@ -1,7 +1,24 @@
-/* All values and policies below are fictional teaching data. */
-(function(root){
-const baseline=[{id:'ORD-1042',customer:'Helix Mobility',units:180,value:72000,due:3,status:'At risk'},{id:'ORD-1043',customer:'Northstar Energy',units:140,value:56000,due:5,status:'At risk'},{id:'ORD-1044',customer:'Atlas Robotics',units:100,value:40000,due:7,status:'On track'}];
-function evaluate(delay,quantity){const late=baseline.filter(o=>2+Number(delay)>o.due);let remaining=Number(quantity);const rescued=late.filter(o=>{if(remaining>=o.units){remaining-=o.units;return true}return false});const unresolved=late.filter(o=>!rescued.includes(o));return {late,rescued,unresolved,risk:unresolved.reduce((s,o)=>s+o.value,0),cost:Number(quantity)*12,used:Number(quantity)-remaining};}
-function validate({role,quantity,reason,committed}){if(committed)return 'This plan has already been applied. Reset to start another run.';if(role!=='planner')return 'Denied: the analyst role can read the model, but cannot apply this action.';if(!Number.isInteger(quantity)||quantity<0||quantity>420)return 'Quantity must be a whole number between 0 and 420.';if(quantity===0)return 'Choose a positive quantity to reallocate.';if(quantity>320)return 'Insufficient alternate stock: only 320 units are available.';if(reason.trim().length<8)return 'Provide a reason of at least 8 characters.';return null;}
-const api={baseline,evaluate,validate};if(typeof module!=='undefined')module.exports=api;root.OntologyModel=api;
+(function(root) {
+  const baseline = Object.freeze({available:160000,bill:11500,commitments:90000,buffer:50000,currency:'USD'});
+  function parseAmount(value) {
+    if(typeof value!=='string'||!/^\d+(?:\.\d{1,2})?$/.test(value))return NaN;
+    const [whole,fraction='']=value.split('.');
+    const result=Number(whole)*100+Number(fraction.padEnd(2,'0'));
+    return Number.isSafeInteger(result)?result:NaN;
+  }
+  function evaluate(available, amount=baseline.bill) {
+    const remaining=available-amount-baseline.commitments;
+    return {available,amount,remaining,headroom:remaining-baseline.buffer,permitted:remaining>=baseline.buffer};
+  }
+  function validate({role,amount,available,bill='Unpaid'}) {
+    if(role!=='customer')return 'Denied: this assistant has read-only authority. A proposal cannot grant payment rights.';
+    if(!Number.isSafeInteger(amount)||amount!==baseline.bill)return 'Rejected: this action pays the exact USD 115.00 bill. Changing the amount needs a different proposal.';
+    if(bill==='Paid')return 'Rejected: this bill is already paid.';
+    if(!Number.isSafeInteger(available)||available<0)return 'Rejected: a valid current available balance is required.';
+    if(!evaluate(available,amount).permitted)return 'Rejected: after the $900 commitment, this payment would breach the $500 buffer.';
+    return '';
+  }
+  const api={baseline,parseAmount,evaluate,validate};
+  if(typeof module!=='undefined')module.exports=api;
+  root.OntologyModel=api;
 })(typeof window!=='undefined'?window:globalThis);

@@ -1,60 +1,86 @@
-# Implementation and verification
+# Implementation and verification: agentic everyday banking
 
-## Files
+## Local files
 
-- `index.html`: application shell, navigation, and accessibility landmarks.
-- `style.css`: responsive editorial layout and graph presentation.
-- `model.js`: pure allocation calculation and submission-policy validation.
-- `app.js`: six chapters, graph interaction, filtering, workbench, quiz, and references.
-- `docs/`: study guide, evidence map, presentation script, and this document.
-- `../../tests/model.test.cjs`: meaningful checks for the decision policy and its boundaries.
+- index.html: offline application shell, seven numbered banking chapters and accessibility landmarks.
+- style.css: existing responsive editorial layout, graph, tables, forms and feedback components.
+- model.js: shared integer-cent parsing, buffer calculation and payment-policy validation.
+- banking.js: sixteen candidate types, typed property schemas, four customer journeys, object explorer, shared payment workflow and local event trail.
+- app.js: mental model, schema/instance explorer, architecture, eight banking questions, study path and twenty-one source references.
+- docs/: this document, the complete banking study guide, focused walkthrough, presentation script and research evidence map.
+- ../../tests/: pure policy tests, complete application DOM checks, payment-lifecycle checks and offline artifact checks.
+- ../../DESIGN.md: extracted visual contract and shared-state behavior.
 
-No build step or runtime dependency is required. All interactions run in the browser. System fonts and all runtime assets are local. A Content Security Policy disables network connections and external asset loading. No analytics, credentials, live AI, or Palantir API calls are included.
+There is no build step or runtime dependency. The bundled test DOM implementation and licenses are local. No installation or external font is needed.
 
-## Run locally
+## Open offline
 
-From the project directory:
+Open dist/index.html directly. An optional localhost server is available from the project directory:
 
-```bash
+~~~bash
 python3 -m http.server 8765 --directory dist
-```
+~~~
 
-Visit `http://localhost:8765`. Opening `dist/index.html` directly also works. Markdown links open as source documents; use a Markdown reader for formatted study.
+The default chapter is Everyday banking. Other routes are The mental model, Banking objects, Payment lifecycle, Banking architecture, Test your understanding, and Research & evidence. Each teaches the same fictional scenario; no alternate legacy domain remains in the learning content.
 
-The QA tests use the bundled standalone `linkedom` 0.18.14 build in `tests/vendor/`, with license notices included. No package installation or network access is required.
+## One model, shared across chapters
 
-## State and calculation
+BankingDemo owns the in-memory customer scenario. The opening page and payment lifecycle page render the same workbench and bind the same handlers. Overview and explorer render the same graph and inspector, reading that shared state.
 
-The application stores its simulation in memory. Navigation preserves an applied plan; reset or refresh starts over. Applying twice is blocked. Following a successful apply, delay, quantity, and reason controls are locked until reset.
+The explorer's schema mode describes identity, typed fields and backing-source names. Instance mode describes fictional examples. Search covers all sixteen types, not only the six shown in the graph. AccountOwnership is represented by a direct ownership edge only as graph shorthand.
 
-Only complete late orders consume simulated protective stock, in due-date order. An oversized order is skipped if it cannot be fully covered; a later smaller order can still fit. Selected quantity is removed from alternate inventory even if not all selected units protect late orders. This is a deliberate simplification highlighted in the UI and study guide.
+Initial snapshot descriptions are observations. Live Account, Bill and PaymentInstruction fields show the current simulation. Navigation preserves proposal, approval, instruction, reservation and outcome. Reset clears the banking workflow; refreshing starts a new session. Quiz state also persists across chapter navigation until restart or refresh.
 
-The role selector demonstrates a policy boundary but is not authentication. A production system must enforce authorization and validation on trusted services. No durable data, external integration, or real transaction is implemented.
+## Calculation and lifecycle
 
-## Verification
+All monetary calculations use integer cents. Initial available funds are USD 1,600, the exact bill is USD 115, known rent is USD 900 and the required buffer is USD 500. The baseline remaining amount is USD 585.
 
-Run:
+The pure policy rejects invalid amounts, noninteger or missing balance observations, the wrong bill amount, read-only authority, paid bills and buffer breaches.
 
-```bash
-node --check dist/app.js
-node --check dist/model.js
-node --test tests/model.test.cjs
-node tests/app.test.cjs
-python3 tests/check_artifacts.py
-```
+Changing amount or authority invalidates proposal and consent. The competing-spend control reduces current available funds by USD 100 once. Submission rechecks current policy even after approval, so stale evidence cannot pass this local demonstration.
 
-The model tests cover due-date equality, the default and severe-disruption scenarios, whole-order allocations, transport cost, role denial, stock bounds, reason validation, and replay rejection. The application smoke check uses a linkedom DOM harness to execute all six chapters and exercise graph controls, search, apply/reject/reset, navigation, and quizzes; it is not a real-browser layout test. Artifact checks confirm local asset/document references and JavaScript source parsing.
+On valid submit:
+1. Create one queued instruction with a proposal-derived idempotency key.
+2. Reserve USD 115 once.
+3. Keep the bill unpaid and show no posted transaction.
 
-Native browser inspection was attempted, but the available computer-use runtime reported that no browser is available. Responsive CSS and markup were reviewed statically; screenshot-level visual QA and real-browser interaction checks remain unverified in this environment.
+Simulated settlement replaces the reservation with a posted debit and marks the bill paid. It does not deduct available funds again. Definitive simulated failure releases the reservation and requires a new proposal and consent for retry. Duplicate submit and repeated settlement are blocked.
 
-## Offline-only operation
+IDs, clock timestamps, deduplication and audit events are illustrative and local. There is no durable idempotency service, authentication, consent expiry enforcement, external ledger or payment processor. Unknown outcomes, reversals and partial settlements are discussed in the guides but not implemented as simulator states.
 
-Open `dist/index.html` directly. There is no hosting configuration, deployment script, external font import, analytics, or API connection. The Content Security Policy blocks external runtime assets and `connect-src` is `none`. All learning content, calculations, and quizzes are included locally.
+## Automated verification
 
-Research citations remain as optional links to the original documentation. They do not load or send requests unless you explicitly follow them; the study guide itself is available offline.
+Run from the project directory with Node.js and Python already installed:
 
-A previous hosted copy was created before the local-only requirement. Removing the local hosting configuration does not remove that remote copy. The available Sites tools cannot unpublish or delete it; use the Sites management interface or OpenAI support to remove the hosted Site and stored source/version artifacts.
+~~~bash
+npm test
+~~~
 
-## Extension ideas
+The suite performs:
+- Syntax checks on all application JavaScript.
+- Nine pure banking-model tests covering exact decimal parsing, unsafe input, baseline calculation, equality at the buffer boundary, stale funds, role authority, exact amount, paid bills and invalid observations.
+- All seven rendered DOM chapters, numbered navigation, banking-only content, sixteen searchable types, schema properties, empty search, keyboard graph activation and invalid-route fallback.
+- Cross-chapter proposal, queue, settlement and reset consistency.
+- Eight quiz answers, answer persistence, restart and twenty-one references.
+- Exact consent invalidation, role denial, current-balance rejection, duplicate protection, single reservation/debit, definitive failure, retry and reset.
+- Local asset and Markdown references, document set, prohibited legacy-domain content, credential exclusion and offline runtime restrictions.
 
-Implement order-line granularity, partial allocations, alternate route lead time, a multi-variable optimizer, source freshness indicators, and reconciliation states. If integrating with Foundry, replace the local model with generated OSDK types and verified action definitions; keep credentials and policy enforcement out of browser code.
+The application harness uses the bundled linkedom implementation. These are DOM behavior checks, not screenshot or browser-layout evidence.
+
+## Browser verification limits
+
+The available browser integration has no connected automation session. Native Computer Use was also attempted and reported that permissions are not granted. No new browser tooling was installed and no permissions were changed.
+
+Real-browser rendering, mobile/tablet/desktop screenshots and Lighthouse measurements remain unverified. Responsive CSS and semantic markup are present, but automated DOM checks cannot prove visual fidelity.
+
+## Offline and hosting policy
+
+The HTML Content Security Policy blocks network connections and external assets. No fetch, XMLHttpRequest, WebSocket, analytics, CDN imports, remote fonts, external scripts or deployment configuration are included. Research links are optional user-initiated navigation.
+
+Do not publish, deploy, create a hosted Site, or upload source. All changes described here are local.
+
+A hosted copy was created before the local-only requirement. Removing local configuration does not delete that remote copy. Available Sites tools cannot unpublish or delete it; removal requires Sites management or OpenAI support. It has not been updated with these banking changes.
+
+## Extension path
+
+Extend the same model with joint signing, consent expiry, savings transfers, card-service requests, unknown-outcome reconciliation or reversals. A real integration must identify authoritative services and enforce policy there. Validate generated OSDK contracts and action configuration against the intended enrollment and versions; keep secrets and enforcement out of browser code.
