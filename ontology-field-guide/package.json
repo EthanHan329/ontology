@@ -6,6 +6,5 @@
   "scripts": {
     "test": "node --check dist/app.js && node --check dist/model.js && node --test tests/model.test.cjs && node tests/app.test.cjs && python3 tests/check_artifacts.py",
     "start": "python3 -m http.server 8765 --directory dist"
-  },
-  "devDependencies": { "linkedom": "0.18.14" }
+  }
 }

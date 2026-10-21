@@ -9,7 +9,7 @@
 - `docs/`: study guide, evidence map, presentation script, and this document.
 - `../../tests/model.test.cjs`: meaningful checks for the decision policy and its boundaries.
 
-No build step or runtime dependency is required. All interactions run in the browser. Google Fonts are optional network resources; local sans-serif and monospace fallbacks work offline. No analytics, credentials, live AI, or Palantir API calls are included.
+No build step or runtime dependency is required. All interactions run in the browser. System fonts and all runtime assets are local. A Content Security Policy disables network connections and external asset loading. No analytics, credentials, live AI, or Palantir API calls are included.
 
 ## Run locally
 
@@ -21,7 +21,7 @@ python3 -m http.server 8765 --directory dist
 
 Visit `http://localhost:8765`. Opening `dist/index.html` directly also works. Markdown links open as source documents; use a Markdown reader for formatted study.
 
-Only the QA tests use the development dependency `linkedom` (0.18.14); serving the app requires no installation.
+The QA tests use the bundled standalone `linkedom` 0.18.14 build in `tests/vendor/`, with license notices included. No package installation or network access is required.
 
 ## State and calculation
 
@@ -36,7 +36,6 @@ The role selector demonstrates a policy boundary but is not authentication. A pr
 Run:
 
 ```bash
-npm install --ignore-scripts
 node --check dist/app.js
 node --check dist/model.js
 node --test tests/model.test.cjs
@@ -48,9 +47,13 @@ The model tests cover due-date equality, the default and severe-disruption scena
 
 Native browser inspection was attempted, but the available computer-use runtime reported that no browser is available. Responsive CSS and markup were reviewed statically; screenshot-level visual QA and real-browser interaction checks remain unverified in this environment.
 
-## Deployment
+## Offline-only operation
 
-The static `dist` directory is deployable without a server backend. `.openai/hosting.json` records the Sites identity. The source workflow packages and synchronizes source before private deployment. Source credentials are runtime inputs and must never be placed in application files or documentation.
+Open `dist/index.html` directly. There is no hosting configuration, deployment script, external font import, analytics, or API connection. The Content Security Policy blocks external runtime assets and `connect-src` is `none`. All learning content, calculations, and quizzes are included locally.
+
+Research citations remain as optional links to the original documentation. They do not load or send requests unless you explicitly follow them; the study guide itself is available offline.
+
+A previous hosted copy was created before the local-only requirement. Removing the local hosting configuration does not remove that remote copy. The available Sites tools cannot unpublish or delete it; use the Sites management interface or OpenAI support to remove the hosted Site and stored source/version artifacts.
 
 ## Extension ideas
 

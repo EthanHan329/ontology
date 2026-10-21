@@ -1,6 +1,6 @@
 # A five-minute Ontology demonstration
 
-Audience: a technical or business audience learning the concept. All figures are fictional. Open `index.html` or the hosted site. Use a desktop viewport for the graph; the layout also adapts to mobile.
+Audience: a technical or business audience learning the concept. All figures are fictional. Open the local `dist/index.html` file. No server or internet connection is needed. Use a desktop viewport for the graph; the layout also adapts to mobile.
 
 ## 0:00–0:40 — State the operational problem
 

@@ -4,7 +4,9 @@ An independent, primary-source-backed learning experience for Palantir's Ontolog
 
 ## Open
 
-Open [dist/index.html](dist/index.html), or serve the site:
+Open [dist/index.html](dist/index.html) directly in your browser. Everything runs offline: no installation, hosting, account, or internet connection is required.
+
+An optional local HTTP server is also available:
 
 ```bash
 python3 -m http.server 8765 --directory dist
@@ -18,3 +20,11 @@ python3 -m http.server 8765 --directory dist
 - [Implementation and verification](dist/docs/IMPLEMENTATION.md)
 
 Research reviewed 21 October 2026. All demo entities, policies, and numbers are fictional. No Palantir connection or live AI is required.
+
+## Local-only policy
+
+Do not publish, deploy, upload source to a hosting service, or create a hosted copy. Research citations are optional outbound links; they are never loaded automatically. Fonts and application assets are local.
+
+## Offline checks
+
+With Node.js and Python already installed, run `npm test`. No `npm install` is needed; the DOM test library and its license notices are included under `tests/vendor/`.
