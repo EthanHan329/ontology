@@ -1,0 +1,11 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');const {evaluate,validate}=require('../dist/model.js');
+test('due-day equality is on time and the default delay threatens only first order',()=>{const r=evaluate(3,0);assert.equal(r.risk,72000);assert.deepEqual(r.late.map(o=>o.id),['ORD-1042'])});
+test('five-day disruption can be covered with 320 alternate units',()=>{const r=evaluate(5,320);assert.equal(r.risk,0);assert.equal(r.rescued.length,2);assert.equal(r.used,320);assert.equal(r.cost,3840)});
+test('severe disruption leaves the third order exposed',()=>{const r=evaluate(7,320);assert.equal(r.risk,40000);assert.equal(r.unresolved[0].id,'ORD-1044')});
+test('whole-order policy can skip a large order and protect a smaller later one',()=>{const r=evaluate(7,140);assert.deepEqual(r.rescued.map(o=>o.id),['ORD-1043']);assert.equal(r.risk,112000)});
+test('no delay produces zero risk and surplus still incurs transport cost',()=>{const r=evaluate(0,320);assert.equal(r.risk,0);assert.equal(r.used,0);assert.equal(r.cost,3840)});
+const valid={role:'planner',quantity:180,reason:'Protect commitments',committed:false};
+test('planner valid submission passes',()=>assert.equal(validate(valid),null));
+test('analyst cannot submit',()=>assert.match(validate({...valid,role:'analyst'}),/Denied/));
+test('stock is bounded, quantities are positive integers',()=>{for(const q of [-1,0,1.5,340,500,NaN])assert.ok(validate({...valid,quantity:q}));assert.equal(validate({...valid,quantity:320}),null)});
+test('empty or short reasons and repeated submissions are rejected',()=>{assert.ok(validate({...valid,reason:'  '}));assert.ok(validate({...valid,reason:'short'}));assert.match(validate({...valid,committed:true}),/already/)});

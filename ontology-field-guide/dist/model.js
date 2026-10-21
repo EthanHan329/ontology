@@ -1,0 +1,7 @@
+/* All values and policies below are fictional teaching data. */
+(function(root){
+const baseline=[{id:'ORD-1042',customer:'Helix Mobility',units:180,value:72000,due:3,status:'At risk'},{id:'ORD-1043',customer:'Northstar Energy',units:140,value:56000,due:5,status:'At risk'},{id:'ORD-1044',customer:'Atlas Robotics',units:100,value:40000,due:7,status:'On track'}];
+function evaluate(delay,quantity){const late=baseline.filter(o=>2+Number(delay)>o.due);let remaining=Number(quantity);const rescued=late.filter(o=>{if(remaining>=o.units){remaining-=o.units;return true}return false});const unresolved=late.filter(o=>!rescued.includes(o));return {late,rescued,unresolved,risk:unresolved.reduce((s,o)=>s+o.value,0),cost:Number(quantity)*12,used:Number(quantity)-remaining};}
+function validate({role,quantity,reason,committed}){if(committed)return 'This plan has already been applied. Reset to start another run.';if(role!=='planner')return 'Denied: the analyst role can read the model, but cannot apply this action.';if(!Number.isInteger(quantity)||quantity<0||quantity>420)return 'Quantity must be a whole number between 0 and 420.';if(quantity===0)return 'Choose a positive quantity to reallocate.';if(quantity>320)return 'Insufficient alternate stock: only 320 units are available.';if(reason.trim().length<8)return 'Provide a reason of at least 8 characters.';return null;}
+const api={baseline,evaluate,validate};if(typeof module!=='undefined')module.exports=api;root.OntologyModel=api;
+})(typeof window!=='undefined'?window:globalThis);
