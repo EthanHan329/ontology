@@ -1,5 +1,7 @@
 # Research notebook and evidence map
 
+For self-contained implementation guidance rather than a source map, use the [Ontology engineering handbook](ONTOLOGY_ENGINEERING_HANDBOOK.md), checked against additional primary documentation on 22 October 2026.
+
 Reviewed 21 October 2026. Scope: Palantir's public Foundry documentation, applied throughout this guide to a fictional agentic everyday banking model. This is a documentation synthesis, not a banking product assessment, independent performance benchmark or hands-on validation inside a Foundry enrollment.
 
 ## Method

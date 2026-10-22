@@ -7,7 +7,7 @@
 - model.js: shared integer-cent parsing, buffer calculation and payment-policy validation.
 - banking.js: sixteen candidate types, typed property schemas, four customer journeys, object explorer, shared payment workflow and local event trail.
 - app.js: mental model, schema/instance explorer, architecture, eight banking questions, study path and twenty-one source references.
-- docs/: this document, the complete banking study guide, focused walkthrough, presentation script and research evidence map.
+- docs/: this document, the complete banking study guide, focused walkthrough, presentation script, research evidence map and [Ontology engineering handbook](ONTOLOGY_ENGINEERING_HANDBOOK.md).
 - ../../tests/: pure policy tests, complete application DOM checks, payment-lifecycle checks and offline artifact checks.
 - ../../DESIGN.md: extracted visual contract and shared-state behavior.
 
@@ -64,6 +64,7 @@ The suite performs:
 - Eight quiz answers, answer persistence, restart and twenty-one references.
 - Exact consent invalidation, role denial, current-balance rejection, duplicate protection, single reservation/debit, definitive failure, retry and reset.
 - Local asset and Markdown references, document set, prohibited legacy-domain content, credential exclusion and offline runtime restrictions.
+- The handbook's executable SQLite reference: baseline eligibility, customer-scope mismatch, latest observation and stale-balance rejection.
 
 The application harness uses the bundled linkedom implementation. These are DOM behavior checks, not screenshot or browser-layout evidence.
 

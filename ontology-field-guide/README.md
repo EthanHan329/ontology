@@ -20,6 +20,7 @@ All chapters share one in-memory payment scenario. The default calculation prese
 
 ## Study and present
 
+- [Ontology engineering handbook: design, build, use and operate](dist/docs/ONTOLOGY_ENGINEERING_HANDBOOK.md) — a self-contained implementation reference with Foundry procedures, schema and action contracts, best practices, local SQL examples, tests and runbooks.
 - [Complete banking Ontology study guide](dist/docs/STUDY_GUIDE.md)
 - [Banking objects, customer journeys and worked example](dist/docs/AGENTIC_BANKING.md)
 - [Five-minute banking presentation](dist/docs/DEMO_SCRIPT.md)

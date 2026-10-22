@@ -2,6 +2,8 @@
 
 Independent research and teaching material · Reviewed **21 October 2026**
 
+For implementation procedures and production design, use the separate [Ontology engineering handbook](ONTOLOGY_ENGINEERING_HANDBOOK.md). It covers schema and source contracts, Foundry setup, queries, actions, permissions, agent tools, integrations, testing, migration and operations.
+
 This guide uses one fictional banking application throughout. The accompanying offline HTML follows Alex Morgan's request: **“Pay my electricity bill, keep enough for rent, and leave a USD 500 buffer.”** The schema, tool contracts, figures and policy are original teaching design. The primary sources support the underlying Palantir concepts; they do not establish banking compliance or a prebuilt financial product.
 
 Use the [banking walkthrough](AGENTIC_BANKING.md) for the complete object catalog and hands-on scenarios, the [presentation script](DEMO_SCRIPT.md) for a five-minute demonstration, and the [evidence map](RESEARCH.md) for optional source links. None is fetched automatically.
