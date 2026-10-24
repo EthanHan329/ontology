@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "onlyFile": "demo.html",
+  "offline": true,
+  "width": 390,
+  "scrollWidth": 390,
+  "resources": [],
+  "externalAssets": 0,
+  "verified": [
+    "embedded styles",
+    "embedded scripts",
+    "login",
+    "transfer settlement",
+    "portfolio refresh",
+    "context",
+    "comparison",
+    "internal navigation",
+    "stale balance rejection"
+  ]
+}

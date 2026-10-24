@@ -2,18 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-8f9sfhM3JAfJ5kaRXguMcUsTf2IfPNfo2D3bSdmnyEs=' 'sha256-jqxi1lL4Xk1sZvUrWGhp8KzLsjWqmWKTeQdKD8ZEq7s='; style-src 'sha256-HGFLXNPxSWINSQLXAWmVVW15bZQEyGBOBJ5BWCSIIHc='; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
   <meta name="description" content="An offline interactive banking lab: chat with a simulated agent, transfer funds, inspect a portfolio, and discover what an ontology adds to context and tools.">
   <title>Inside an agentic bank — Ontology Lab</title>
-  <link rel="stylesheet" href="lab.css">
-  <script src="lab-model.js" defer></script>
-  <script src="lab.js" defer></script>
+  <style id="lab-styles">
+:root{color-scheme:light;--bg:#f5f5ef;--ink:#202c29;--muted:#65706a;--line:#d8dcd3;--green:#166650;--mint:#dcebe1;--surface:#fff;--forest:#152b24;--forest-muted:#b9ccbb;--forest-panel:#213f32;--warn:#f3e3d7;--warn-ink:#924c2e;--sans:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--mono:ui-monospace,'SFMono-Regular',Consolas,monospace;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s10:40px;--s12:48px;--small:12px;--body:14px;--radius:8px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:var(--body)/1.5 var(--sans)}button,input{font:inherit}button,a,input,summary,[tabindex]{outline-offset:4px}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--green)}button{cursor:pointer;transition:background-color 120ms,opacity 120ms}button:disabled{cursor:not-allowed;opacity:.5}a{color:inherit}button{color:var(--ink)}h1,h2,h3,p{margin-top:0}h2{font-size:21px;font-weight:500}h3{font-size:16px;font-weight:600}em{font-family:Georgia,serif;font-weight:400}main{max-width:1280px;margin:auto;padding:0 var(--s8)}.lab-header{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);padding:var(--s6) var(--s8);border-bottom:1px solid var(--line)}.lab-header a{text-decoration:none;font-size:var(--small)}.lab-header .lab-brand{font-size:16px;font-weight:650;letter-spacing:1px;display:flex;align-items:center;gap:var(--s3)}.lab-brand>span:first-child{font-size:24px;color:var(--green)}.brand-sub{font:10px var(--mono);color:var(--muted);letter-spacing:1px}.lab-intro{display:flex;justify-content:space-between;gap:var(--s8);padding:var(--s12) 0 var(--s8);align-items:center}.eyebrow{font:10px/1.6 var(--mono);letter-spacing:1.4px;color:var(--green);display:block;margin-bottom:var(--s3)}h1{font-size:48px;line-height:1.1;letter-spacing:-2px;font-weight:500;margin-bottom:var(--s4)}h1 em{color:var(--green)}.lede{color:var(--muted);font-size:16px;max-width:650px;margin-bottom:0}.demo-note{font:10px var(--mono);white-space:nowrap}.demo-note p{font:var(--small)/1.6 var(--sans);color:var(--muted);margin:var(--s3) 0 0}.status-dot{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:var(--s2)}.journey{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);padding:var(--s4) 0;margin:0;border-block:1px solid var(--line);gap:var(--s4);font-size:var(--small)}.journey b{font:var(--small) var(--mono);color:var(--green);margin-right:var(--s3)}.lab-toolbar{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);padding:var(--s8) 0 var(--s6)}.lab-toolbar .eyebrow{margin-bottom:var(--s2)}.scenario-buttons{display:flex;gap:var(--s2)}.scenario-buttons button,.button{min-height:44px;border:1px solid var(--line);border-radius:4px;background:transparent;padding:var(--s2) var(--s4);font-size:var(--small);font-weight:600}.scenario-buttons button[aria-pressed=true]{background:var(--mint);color:var(--green);border-color:var(--mint)}.button:hover,.scenario-buttons button:hover{background:var(--mint)}.button.primary{background:var(--green);color:var(--surface);border-color:var(--green)}.button.primary:hover{background:var(--forest-panel)}.button.full{width:100%}.lab-grid{display:grid;grid-template-columns:360px minmax(0,1fr);gap:var(--s8);align-items:start}.lab-grid>section{min-width:0}.pane-label{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);margin-bottom:var(--s4)}.pane-label h2{font-size:var(--body);margin:0;font-weight:600}.pane-label>span{font:10px var(--mono);color:var(--muted)}.phone{border:1px solid var(--line);border-radius:24px;background:var(--surface);overflow:hidden}.phone-top{padding:var(--s5) var(--s6);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.phone-top strong{font-size:18px;letter-spacing:-.5px}.phone-top span{font:10px var(--mono);color:var(--muted)}.login-screen{padding:var(--s10) var(--s6);min-height:520px;display:flex;flex-direction:column;justify-content:center}.login-symbol{width:64px;height:64px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font:24px Georgia,serif;margin-bottom:var(--s8);color:var(--green)}.login-screen h3{font-size:32px;line-height:1.15;font-weight:500;letter-spacing:-1px;margin-bottom:var(--s4)}.login-screen p{color:var(--muted)}.login-identity{background:var(--bg);padding:var(--s4);border-radius:var(--radius);margin:var(--s6) 0;display:flex;justify-content:space-between;font-size:var(--small)}.fine{font-size:var(--small);color:var(--muted)}.login-screen .fine{margin:var(--s4) 0 0}.account-strip{padding:var(--s5) var(--s6);background:var(--forest);color:var(--surface)}.account-strip>p{color:var(--forest-muted);font-size:var(--small);margin-bottom:var(--s3)}.account-values{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}.account-values span{display:block;color:var(--forest-muted);font-size:10px}.account-values strong{display:block;font-size:24px;line-height:1.4;font-weight:500;font-variant-numeric:tabular-nums}.agent-label{display:flex;justify-content:space-between;padding:var(--s4) var(--s5) var(--s2);font-size:var(--small);font-weight:600}.agent-label span{font-weight:400;color:var(--muted)}.chat-history{height:280px;overflow-y:auto;overscroll-behavior:contain;padding:var(--s3) var(--s5);display:flex;flex-direction:column;gap:var(--s3)}.message{padding:var(--s3);border-radius:var(--radius);background:var(--bg);font-size:13px;max-width:94%;align-self:flex-start;overflow-wrap:anywhere}.message.user{background:var(--mint);align-self:flex-end}.message small{display:block;font:10px var(--mono);color:var(--muted);margin-bottom:var(--s1)}.suggestions{padding:var(--s3) var(--s5);display:flex;flex-wrap:wrap;gap:var(--s2);border-top:1px solid var(--line)}.suggestions button{min-height:44px;padding:var(--s2) var(--s3);font-size:var(--small);border:1px solid var(--line);border-radius:4px;background:var(--surface);text-align:left}.suggestions button:hover{background:var(--mint)}.chat-form{padding:0 var(--s5) var(--s5)}.chat-form label{font-size:10px;color:var(--muted);display:block;margin-bottom:var(--s2)}.composer{display:flex;gap:var(--s2)}.composer input{width:100%;min-width:0;border:1px solid var(--line);border-radius:4px;padding:var(--s3);background:var(--surface);font-size:13px}.composer button{padding:var(--s2) var(--s3)}.phone-caption{font-size:var(--small);color:var(--muted);margin:var(--s4) var(--s2)}.phone-result{padding:var(--s4) var(--s5);border-top:1px solid var(--line);background:var(--bg)}.phone-result h3{margin-bottom:var(--s2)}.phone-result p{font-size:var(--small);margin-bottom:var(--s3)}.phone-result .button+.button{margin-top:var(--s2)}.receipt-tag{font:10px var(--mono);color:var(--green);margin-bottom:var(--s2);display:block}.inspector-tabs{display:flex;gap:var(--s1);background:var(--line);padding:var(--s1);border-radius:var(--radius);margin-bottom:var(--s4)}.inspector-tabs button{min-height:44px;flex:1;border:0;border-radius:4px;font-size:var(--small);background:transparent;padding:var(--s2);font-weight:600}.inspector-tabs button[aria-pressed=true]{background:var(--surface);color:var(--green)}.panel{border:1px solid var(--line);border-radius:var(--radius);padding:var(--s5);margin-bottom:var(--s4)}.panel>p{font-size:13px;color:var(--muted)}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s4)}.panel-head h3{margin:0}.tag{font:10px var(--mono);padding:var(--s1) var(--s2);background:var(--mint);border-radius:4px;color:var(--green)}.graph-panel{background:var(--forest);color:var(--surface);border-color:var(--forest)}.graph-panel>p{color:var(--forest-muted)}.graph-panel .tag{background:var(--forest-panel);color:var(--forest-muted)}.object-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2)}.object-node{background:var(--forest-panel);border:1px solid var(--forest-muted);border-radius:4px;color:var(--surface);text-align:left;padding:var(--s3);min-height:80px;min-width:0}.object-node:hover,.object-node[aria-pressed=true]{background:var(--green);border-color:var(--mint)}.object-node:focus-visible{outline-color:var(--surface)}.object-node span{display:block;font:10px var(--mono);color:var(--forest-muted);margin-bottom:var(--s2);overflow-wrap:anywhere}.object-node strong{font-size:var(--small);font-weight:500;display:block}.graph-path{font:10px/1.7 var(--mono);color:var(--forest-muted);margin:var(--s4) 0 0;overflow-wrap:anywhere}.properties{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:var(--s2) var(--s4);font-size:var(--small);margin:0}.properties dt{color:var(--muted)}.properties dd{margin:0;overflow-wrap:anywhere}.object-detail{margin-top:var(--s4);padding-top:var(--s4);border-top:1px solid var(--forest-panel)}.object-detail .properties dt{color:var(--forest-muted)}.object-detail p{font-size:var(--small);color:var(--forest-muted);margin:var(--s3) 0 0}.policy-list{list-style:none;padding:0;margin:0}.policy-list li{display:flex;gap:var(--s3);padding:var(--s2) 0;font-size:var(--small)}.policy-state{font:10px/1.8 var(--mono);min-width:48px;color:var(--green)}.policy-state.fail{color:var(--warn-ink)}.policy-state.wait{color:var(--muted)}.policy-list small{display:block;color:var(--muted);font-size:var(--small)}.experiments{background:var(--mint)}.experiments .button{background:var(--bg)}.button-row{display:flex;flex-wrap:wrap;gap:var(--s2)}.experiment-status{font-size:var(--small);margin-top:var(--s3);margin-bottom:0}.trace{border-top:1px solid var(--line);padding-top:var(--s4)}summary{cursor:pointer;min-height:44px;font-weight:600;font-size:13px}.trace ol{list-style:none;margin:0;padding:0}.trace li{padding:var(--s3) 0;border-top:1px solid var(--line)}.trace-title{display:flex;justify-content:space-between;gap:var(--s2);font:var(--small) var(--mono);overflow-wrap:anywhere}.trace-title span{font:10px var(--mono);color:var(--muted)}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:var(--small)/1.6 var(--mono);padding:var(--s3);background:var(--bg);border-radius:4px;margin-bottom:0}.context-step{margin-bottom:var(--s5)}.context-step h3{font-size:var(--body);margin-bottom:var(--s2)}.context-step p{font-size:13px;color:var(--muted)}.comparison-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);padding:var(--s4) 0;border-bottom:1px solid var(--line)}.comparison-row h3{font-size:13px;margin-bottom:var(--s2)}.comparison-row p{font-size:13px;color:var(--muted);margin-bottom:0}.comparison-heading{font:10px var(--mono);color:var(--green)}.portfolio-row{display:flex;justify-content:space-between;gap:var(--s3);font-size:var(--small);padding:var(--s2) 0;border-bottom:1px solid var(--line)}.portfolio-row span small{display:block;color:var(--muted);font-size:10px}.portfolio-total{font-size:32px;letter-spacing:-1px;font-variant-numeric:tabular-nums;margin-bottom:var(--s2)}.warning{background:var(--warn);color:var(--warn-ink);padding:var(--s3);border-radius:4px;font-size:var(--small)}.takeaway{padding:var(--s10) 0 var(--s12);margin-top:var(--s8);border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:0 var(--s12)}.takeaway .eyebrow{grid-column:1/-1}.takeaway h2{font-size:24px;line-height:1.4;letter-spacing:-.5px;margin-bottom:0}.takeaway h2 em{color:var(--green)}.takeaway p{color:var(--muted);margin:0;max-width:65ch}footer{border-top:1px solid var(--line);padding:var(--s6) var(--s8);display:flex;justify-content:space-between;gap:var(--s4);font:10px/1.6 var(--mono);color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:fixed;top:var(--s2);left:var(--s2);transform:translateY(-200%);background:var(--surface);padding:var(--s3);z-index:2}.skip-link:focus{transform:translateY(0)}
+.login-screen{padding:var(--s6);min-height:360px}.login-screen h3{font-size:24px}.login-symbol{width:40px;height:40px;margin-bottom:var(--s4)}.login-identity{margin:var(--s4) 0}.login-screen>p{font-size:13px}.lab-header{padding-block:var(--s4)}.lab-intro{padding-top:var(--s8);padding-bottom:var(--s6)}.lab-toolbar{padding-top:var(--s6);padding-bottom:var(--s5)}
+@media(max-width:1100px){.lab-grid{grid-template-columns:340px minmax(0,1fr);gap:var(--s5)}.pane-label>span{display:none}.object-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.brand-sub{display:none}}
+@media(max-width:960px){.lab-grid{grid-template-columns:minmax(0,1fr)}.lab-grid>section:first-child{width:100%;max-width:480px;justify-self:center}.demo-note{display:none}.takeaway{gap:var(--s6)}}
+@media(max-width:600px){main{padding:0 var(--s4)}.lab-header{padding:var(--s4);gap:var(--s3)}.lab-header .lab-brand{font-size:var(--small);gap:var(--s2)}.lab-header>a:last-child{font-size:10px}.lab-intro{padding:var(--s8) 0 var(--s6)}h1{font-size:32px;letter-spacing:-1px}.lede{font-size:var(--body)}.journey{grid-template-columns:1fr 1fr;gap:var(--s3)}.lab-toolbar{align-items:flex-start;padding-top:var(--s6);gap:var(--s2)}.lab-toolbar>.button{padding:var(--s2);font-size:10px;margin-top:28px}.scenario-buttons{gap:var(--s1)}.scenario-buttons button{padding:var(--s2);font-size:10px}.eyebrow{letter-spacing:1px}.inspector-tabs button{font-size:10px}.panel{padding:var(--s4)}.object-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.takeaway{grid-template-columns:1fr;gap:var(--s4);padding-bottom:var(--s8)}.takeaway h2{font-size:21px}.takeaway .eyebrow{margin-bottom:0}.comparison-row{gap:var(--s4)}footer{padding:var(--s5) var(--s4);flex-direction:column;padding-bottom:max(20px,env(safe-area-inset-bottom))}.trace-title{flex-direction:column}}
+.object-node[aria-pressed=true] span,.object-node:hover span{color:var(--mint)}.composer input{border-color:var(--muted)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
   <a class="skip-link" href="#lab">Skip to interactive demo</a>
-  <header class="lab-header"><a href="index.html" class="lab-brand"><span aria-hidden="true">◈</span> ONTOLOGY <span class="brand-sub">/ THE INTERACTIVE LAB</span></a><a href="index.html">Back to the field guide <span aria-hidden="true">↗</span></a></header>
+  <header class="lab-header"><a href="#title" class="lab-brand"><span aria-hidden="true">◈</span> ONTOLOGY <span class="brand-sub">/ THE INTERACTIVE LAB</span></a><a href="#takeaway">How it works <span aria-hidden="true">↓</span></a></header>
   <main>
     <section class="lab-intro" aria-labelledby="title"><div><p class="eyebrow">ONE CUSTOMER. TWO LAYERS OF UNDERSTANDING.</p><h1 id="title">Inside an <em>agentic bank.</em></h1><p class="lede">A customer sees a conversation. Behind it: identities, relationships, rules, and actions. Play both sides to see what an ontology adds.</p></div><div class="demo-note"><span class="status-dot" aria-hidden="true"></span> LOCAL SIMULATION<p>Fictional data · Scripted agent<br>No real login or money movement</p></div></section>
     <ol class="journey" aria-label="Demo walkthrough"><li><b>01</b> Sign in as Alex</li><li><b>02</b> Ask the agent</li><li><b>03</b> Inspect the model</li><li><b>04</b> Test a boundary</li></ol>
@@ -22,10 +29,312 @@
       <section aria-labelledby="customer-title"><div class="pane-label"><h2 id="customer-title">The customer experience</h2><span>FRONTSTAGE</span></div><div class="phone" id="phone"></div><p class="phone-caption">A simulated mobile app. Try the suggestions or type a supported request.</p></section>
       <section class="workbench" aria-labelledby="behind-title"><div class="pane-label"><h2 id="behind-title">What makes the answer actionable?</h2><span>BACKSTAGE</span></div><div class="inspector-tabs" role="group" aria-label="Explanation view"><button type="button" data-tab="ontology" aria-pressed="true">With ontology</button><button type="button" data-tab="context" aria-pressed="false">Context + tools</button><button type="button" data-tab="compare" aria-pressed="false">The difference</button></div><div id="inspector"></div></section>
     </div>
-    <section class="takeaway"><span class="eyebrow">THE IDEA TO TAKE AWAY</span><h2>Context tells the agent something.<br>An ontology defines what that something <em>means.</em></h2><p>Tools still do the work. The ontology gives them shared objects, relationships and action contracts. Authentication, permissions, freshness checks and reliable execution still need to be implemented and enforced.</p></section>
+    <section class="takeaway" id="takeaway"><span class="eyebrow">THE IDEA TO TAKE AWAY</span><h2>Context tells the agent something.<br>An ontology defines what that something <em>means.</em></h2><p>Tools still do the work. The ontology gives them shared objects, relationships and action contracts. Authentication, permissions, freshness checks and reliable execution still need to be implemented and enforced.</p></section>
   </main>
   <footer><span>ONTOLOGY FIELD GUIDE / LEARN BY DOING</span><span>Runs entirely on this device. Reset or reload to start over.</span></footer>
   <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
   <noscript>This interactive demo requires JavaScript. Enable it locally; no internet connection is needed.</noscript>
+  <script id="lab-model">
+'use strict';
+
+class BankLabModel {
+  constructor() {
+    this.signedIn = false;
+    this.available = 160000;
+    this.savings = 820000;
+    this.version = 7;
+    this.rent = 90000;
+    this.buffer = 50000;
+    this.canTransfer = true;
+    this.proposal = null;
+    this.instruction = null;
+    this.sequence = 0;
+    this.quoteVersion = 1;
+    this.holdings = [
+      {id:'HLD-001', name:'Equity fund', units:120, price:25000, category:'Equities'},
+      {id:'HLD-002', name:'Bond fund', units:150, price:10000, category:'Bonds'},
+      {id:'HLD-003', name:'Cash fund', units:50, price:10000, category:'Cash'}
+    ];
+    this.portfolio = null;
+    this.trace = [];
+  }
+
+  record(tool, input, output, layer) {
+    this.trace.push({step:this.trace.length + 1, tool, input, output, layer});
+  }
+
+  login() {
+    this.signedIn = true;
+    this.record('resolveSession', {fixture:'alex-demo'}, {customerId:'CUS-001', name:'Alex Morgan'}, 'Identity');
+  }
+
+  checks(amount) {
+    return [
+      {label:'Authenticated session', ok:this.signedIn, detail:'Demo session maps to CUS-001; a name in chat is not identity.'},
+      {label:'Source account signing rights', ok:this.canTransfer, detail:'OWN-001 connects Alex to ACC-101 with transfer rights.'},
+      {label:'Exact amount in USD', ok:Number.isSafeInteger(amount) && amount > 0 && amount <= 100000000, detail:'Positive integer cents; no currency conversion.'},
+      {label:'Rent and buffer protected', ok:Number.isSafeInteger(amount) && this.available - amount - this.rent >= this.buffer, detail:'Available funds − transfer − $900 rent must leave at least $500.'}
+    ];
+  }
+
+  propose(amount) {
+    if (this.instruction?.status === 'Queued') return {ok:false, message:'Resolve the queued transfer before creating another.'};
+    if (!this.signedIn) return {ok:false, message:'Sign in to the demo first.'};
+    this.proposal = null;
+    this.instruction = null;
+    this.record('queryObjects', {customerId:'CUS-001', path:'AccountOwnership → Account; RecurringCommitment; SavingsGoal'}, {source:'ACC-101', destination:'ACC-102', availableCents:this.available, version:this.version, rentCents:this.rent, bufferCents:this.buffer}, 'Objects & links');
+    const checks = this.checks(amount);
+    this.record('validateTransfer', {amountCents:amount, currency:'USD'}, {checks:checks.map(c=>({rule:c.label, pass:c.ok}))}, 'Action policy');
+    if (checks.some(c=>!c.ok)) return {ok:false, message:!this.canTransfer ? 'Blocked: this account is read-only. Viewing a balance does not grant transfer rights.' : 'Blocked: the amount must be valid and leave $900 for rent plus a $500 buffer.', checks};
+    this.proposal = {id:'PROP-'+(++this.sequence), source:'ACC-101', destination:'ACC-102', amount, currency:'USD', version:this.version, status:'Proposed'};
+    this.record('proposeTransfer', {source:'ACC-101', destination:'ACC-102', amountCents:amount}, {...this.proposal}, 'Action');
+    return {ok:true, proposal:this.proposal, checks};
+  }
+
+  confirm(proposalId) {
+    if (this.instruction?.proposalId === proposalId) return {ok:false, message:'Duplicate prevented: this proposal already has an instruction.'};
+    const p = this.proposal;
+    if (!p || p.id !== proposalId || p.status !== 'Proposed') return {ok:false, message:'No matching active proposal. Ask for a new transfer.'};
+    const checks = this.checks(p.amount);
+    const current = p.version === this.version;
+    this.record('submitTransfer', {proposalId:p.id, consent:{actor:'CUS-001', source:p.source, destination:p.destination, amountCents:p.amount, currency:p.currency}, idempotencyKey:p.id}, {currentVersion:this.version, evidenceVersion:p.version, checks:checks.map(c=>({rule:c.label, pass:c.ok})), accepted:current && checks.every(c=>c.ok)}, 'Execution gate');
+    if (!current || checks.some(c=>!c.ok)) {
+      p.status = 'Rejected';
+      return {ok:false, message:!this.canTransfer ? 'Rejected: signing rights were revoked. No transfer was submitted.' : 'Rejected: account state changed after the proposal. No transfer was submitted. Ask again for a fresh calculation.'};
+    }
+    p.status = 'Approved';
+    this.available -= p.amount;
+    this.version++;
+    this.instruction = {id:'PI-'+this.sequence, proposalId:p.id, amount:p.amount, status:'Queued', transactionId:null};
+    this.record('reserveAndQueue', {proposalId:p.id}, {...this.instruction, availableCents:this.available}, 'Simulated bank service');
+    return {ok:true, message:'Transfer queued. Funds are reserved; savings will update only after settlement.'};
+  }
+
+  resolve(success) {
+    if (this.instruction?.status !== 'Queued') return {ok:false, message:'No queued transfer to resolve.'};
+    const i = this.instruction;
+    if (success) {
+      this.savings += i.amount;
+      i.status = 'Settled';
+      i.transactionId = 'TXN-'+this.sequence;
+    } else {
+      this.available += i.amount;
+      this.version++;
+      i.status = 'Failed';
+    }
+    this.record('reconcileTransfer', {instructionId:i.id, confirmedOutcome:i.status}, {...i, availableCents:this.available, savingsCents:this.savings}, 'Simulated bank service');
+    return {ok:true, message:success ? 'Transfer settled. Savings is credited and a transaction is recorded.' : 'Transfer definitively failed. Reserved funds are released; savings is unchanged.'};
+  }
+
+  spend() {
+    if (!this.signedIn || this.available < 10000) return false;
+    this.available -= 10000;
+    this.version++;
+    this.record('externalCardSpend', {amountCents:10000}, {availableCents:this.available, version:this.version}, 'Simulated source event');
+    return true;
+  }
+
+  revoke() {
+    this.canTransfer = false;
+    this.version++;
+    this.record('updateAccountRights', {ownershipId:'OWN-001'}, {canRead:true, canTransfer:false, version:this.version}, 'Simulated source event');
+  }
+
+  readPortfolio(customerId = 'CUS-001') {
+    if (!this.signedIn || customerId !== 'CUS-001') {
+      this.record('queryPortfolio', {customerId}, {denied:true, reason:'Customer outside authenticated scope'}, 'Object access policy');
+      return {ok:false, message:'Access denied. This session can read Alex’s portfolio only. Mentioning another customer in chat does not grant access.'};
+    }
+    const holdings = this.holdings.map(h=>({...h, value:h.units*h.price}));
+    const total = holdings.reduce((sum,h)=>sum+h.value,0);
+    this.portfolio = {id:'PORT-001', quoteVersion:this.quoteVersion, total, holdings};
+    this.record('queryPortfolio', {customerId, path:'Customer → Portfolio → Holding → Instrument → Quote'}, {portfolioId:'PORT-001', quoteVersion:this.quoteVersion, holdings}, 'Objects & links');
+    this.record('valuePortfolio', {portfolioId:'PORT-001', quoteVersion:this.quoteVersion, formula:'sum(units × price)'}, {totalCents:total, currency:'USD'}, 'Function');
+    return {ok:true, portfolio:this.portfolio};
+  }
+
+  moveMarket() {
+    this.holdings[0].price = Math.round(this.holdings[0].price * 1.1);
+    this.quoteVersion++;
+    this.record('updateQuote', {instrument:'Equity fund', change:'+10%'}, {priceCents:this.holdings[0].price, quoteVersion:this.quoteVersion}, 'Simulated source event');
+  }
+}
+
+if (typeof module !== 'undefined') module.exports = {BankLabModel};
+</script>
+  <script id="lab-app">
+'use strict';
+
+(() => {
+  const q = selector => document.querySelector(selector);
+  const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const dollars = cents => new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',maximumFractionDigits:2}).format(cents / 100);
+  let bank = new BankLabModel();
+  let scenario = 'transfer';
+  let tab = 'ontology';
+  let selected = 'customer';
+  let messages = [];
+  let experiment = '';
+  let observation = null;
+  let lastAmount = 15000;
+  let lastRequest = '';
+
+  function say(text, role = 'agent') {
+    messages.push({text, role});
+    if (role === 'agent') q('#announcement').textContent = text;
+  }
+
+  function phoneResult() {
+    if (scenario === 'portfolio' && bank.portfolio) {
+      const p = bank.portfolio;
+      return `<section class="phone-result" aria-label="Portfolio result"><span class="receipt-tag">PORT-001 / QUOTE SNAPSHOT v${p.quoteVersion}</span><h3>Your portfolio</h3><div class="portfolio-total">${dollars(p.total)}</div>${p.holdings.map(h=>`<div class="portfolio-row"><span>${h.name}<small>${h.units} units × ${dollars(h.price)}</small></span><strong>${Math.round(h.value / p.total * 100)}%</strong></div>`).join('')}<p class="fine">Fictional USD quotes, not live prices. Rounded allocations. No trade is placed.</p>${p.quoteVersion !== bank.quoteVersion ? '<p class="warning">New quote available. This answer still uses the previous snapshot.</p>' : ''}<button type="button" id="refresh-portfolio" class="button full">Refresh portfolio</button></section>`;
+    }
+    if (scenario !== 'transfer') return '';
+    const i = bank.instruction;
+    if (i) {
+      return `<section class="phone-result" aria-label="Transfer result"><span class="receipt-tag">${i.id} / ${i.status.toUpperCase()}</span><h3>${dollars(i.amount)} to savings</h3><p>${i.status === 'Queued' ? 'Reserved in checking. Awaiting a simulated bank outcome.' : i.status === 'Settled' ? `Credited to savings. Transaction ${i.transactionId}.` : 'Definitive failure. Reservation released.'}</p>${i.status === 'Queued' ? '<button type="button" id="settle" class="button primary full">Simulate settlement</button><button type="button" id="fail" class="button full">Simulate definitive failure</button>' : ''}</section>`;
+    }
+    const p = bank.proposal;
+    if (p?.status === 'Proposed') {
+      return `<section class="phone-result" aria-label="Transfer proposal"><span class="receipt-tag">${p.id} / YOUR APPROVAL REQUIRED</span><h3>${dollars(p.amount)} to your savings</h3><p>From Checking · ACC-101<br>To Savings · ACC-102<br>Currency USD · Fee $0.00<br>Balance evidence v${p.version}</p><button type="button" id="confirm" class="button primary full">Confirm ${dollars(p.amount)} transfer</button><button type="button" id="cancel" class="button full">Cancel proposal</button></section>`;
+    }
+    return '';
+  }
+
+  function renderPhone() {
+    q('#phone').innerHTML = `<div class="phone-top"><strong>◈ Grove Bank</strong><span>DEMO APP</span></div>${!bank.signedIn ? `<div class="login-screen"><div class="login-symbol" aria-hidden="true">a.</div><span class="eyebrow">YOUR EVERYDAY BANKING</span><h3>A familiar face.<br>A smarter conversation.</h3><p>Step into Alex’s mobile banking app and meet the assistant.</p><div class="login-identity"><strong>Alex Morgan</strong><span>Demo customer</span></div><button type="button" id="login" class="button primary full">Sign in as Alex <span aria-hidden="true">→</span></button><p class="fine">No credentials needed. This button simulates a trusted session; typing a name in chat does not.</p></div>` : `<div class="account-strip"><p>Hello, Alex. Here’s where you stand.</p><div class="account-values"><div><span>CHECKING / AVAILABLE</span><strong>${dollars(bank.available)}</strong></div><div><span>SAVINGS / POSTED</span><strong>${dollars(bank.savings)}</strong></div></div></div><div class="agent-label">Your banking assistant <span>Scripted demo</span></div><div class="chat-history" role="region" aria-label="Conversation history" tabindex="0">${messages.map(m=>`<div class="message ${m.role === 'user' ? 'user' : ''}"><small>${m.role === 'user' ? 'YOU' : 'GROVE ASSISTANT'}</small>${escape(m.text)}</div>`).join('')}</div>${phoneResult()}<div class="suggestions" aria-label="Suggested requests">${scenario === 'transfer' ? '<button type="button" data-prompt="Transfer $150 to savings">Transfer $150 to savings ↗</button><button type="button" data-prompt="What can I safely transfer?">What can I safely transfer?</button>' : '<button type="button" data-prompt="Check my portfolio">Check my portfolio ↗</button><button type="button" data-prompt="Show another customer’s portfolio">Try another customer’s portfolio</button>'}</div><form class="chat-form" id="chat-form"><label for="chat-input">${scenario === 'transfer' ? 'Try: Transfer $100 to savings' : 'Try: Check my portfolio'}</label><div class="composer"><input id="chat-input" type="text" maxlength="240" autocomplete="off" placeholder="Ask your assistant…" required><button type="submit" class="button primary" aria-label="Send message">Send</button></div></form>`}`;
+    const history = q('.chat-history');
+    if (history) history.scrollTop = history.scrollHeight;
+  }
+
+  function objectData() {
+    const common = [
+      {id:'customer', type:'Customer', name:'Alex Morgan', fields:{'Primary key':'CUS-001', 'Session':bank.signedIn ? 'Authenticated (simulated)' : 'Not signed in', 'Source':'Customer master'}, why:'A stable business identity. The session resolves the customer; the agent cannot choose a different identity by writing a name.'},
+      {id:'rights', type:'AccountOwnership', name:'Owner & signer', fields:{'Primary key':'OWN-001', 'Customer':'CUS-001', 'Account':'ACC-101', 'Can read':'Yes', 'Can transfer':bank.canTransfer ? 'Yes' : 'No'}, why:'The relationship is an object because it has properties of its own: rights, role and effective dates. Reading an account is separate from moving its money.'}
+    ];
+    if (scenario === 'transfer') return [...common,
+      {id:'checking', type:'Account', name:'Everyday checking', fields:{'Primary key':'ACC-101', 'Available':dollars(bank.available), 'Currency':'USD', 'Balance version':bank.version}, why:'The account has an identity independent of a sentence in chat. Available funds change when the source records a spend or reserves a transfer.'},
+      {id:'savings', type:'Account', name:'Your savings', fields:{'Primary key':'ACC-102', 'Posted balance':dollars(bank.savings), 'Owned by':'CUS-001', 'Currency':'USD'}, why:'“Savings” resolves to Alex’s specific account, ACC-102. This demo supports this destination only; it never guesses an external recipient.'},
+      {id:'commitments', type:'Commitment + Goal', name:'Rent & cash buffer', fields:{'Rent / COM-501':dollars(bank.rent), 'Buffer / GOAL-601':dollars(bank.buffer), 'Maximum transfer':dollars(Math.max(0,bank.available - bank.rent - bank.buffer))}, why:'Named business concepts feed a deterministic policy. The agent does not reduce your buffer to make a request pass.'},
+      {id:'action', type:bank.instruction ? 'PaymentInstruction' : 'ActionProposal', name:bank.instruction?.status || bank.proposal?.status || 'Awaiting a request', fields:{'Proposal':bank.proposal?.id || 'None', 'Instruction':bank.instruction?.id || 'None', 'Status':bank.instruction?.status || bank.proposal?.status || 'Not created', 'Amount':bank.proposal ? dollars(bank.proposal.amount) : 'Not specified'}, why:'A proposal, consent, queued instruction and settled transaction are different facts. A linked object does not itself transfer money.'}
+    ];
+    return [...common,
+      {id:'portfolio', type:'Portfolio', name:'Alex’s investments', fields:{'Primary key':'PORT-001', 'Owner':'CUS-001', 'Total':bank.portfolio ? dollars(bank.portfolio.total) : 'Not queried', 'Response snapshot':bank.portfolio ? 'v'+bank.portfolio.quoteVersion : 'None'}, why:'Access follows the authenticated customer-to-portfolio relationship. This is a read operation; it does not create trading authority.'},
+      {id:'holding', type:'Holding', name:'Three positions', fields:{'HLD-001':'120 equity fund units', 'HLD-002':'150 bond fund units', 'HLD-003':'50 cash fund units'}, why:'A holding joins a portfolio to an instrument and carries quantity. The same instrument can be held by many portfolios.'},
+      {id:'quote', type:'Instrument → Quote', name:'Versioned USD prices', fields:{'Equity fund':dollars(bank.holdings[0].price), 'Bond fund':dollars(bank.holdings[1].price), 'Cash fund':dollars(bank.holdings[2].price), 'Current snapshot':'v'+bank.quoteVersion}, why:'Prices have provenance and a snapshot version. A past answer does not magically update when a new price arrives.'},
+      {id:'valuation', type:'Function', name:'Value the portfolio', fields:{'Calculation':'Σ(units × price)', 'Output':'USD total + allocation', 'Side effects':'None'}, why:'A function calculates on resolved objects. The scripted agent explains the result; it does not invent the arithmetic.'}
+    ];
+  }
+
+  function renderOntology() {
+    const objects = objectData();
+    const object = objects.find(o=>o.id === selected) || objects[0];
+    const checks = bank.checks(lastAmount);
+    return `<section class="panel graph-panel"><div class="panel-head"><h3>A shared business model</h3><span class="tag">${bank.signedIn ? 'SESSION: CUS-001' : 'FIXTURE PREVIEW'}</span></div><p>Click an object to inspect its identity, properties, and meaning.</p><div class="object-grid">${objects.map(o=>`<button type="button" class="object-node" data-object="${o.id}" aria-pressed="${o.id === object.id}"><span>${o.type}</span><strong>${o.name}</strong></button>`).join('')}</div><p class="graph-path">${scenario === 'transfer' ? 'Customer → AccountOwnership → Checking → Transfer → Savings<br>Checking → RecurringCommitment + SavingsGoal → Action policy' : 'Customer → owns → Portfolio → contains → Holding<br>Holding → references → Instrument → priced by → Quote'}</p><div class="object-detail"><dl class="properties">${Object.entries(object.fields).map(([key,value])=>`<dt>${escape(key)}</dt><dd>${escape(value)}</dd>`).join('')}</dl><p>${object.why}</p></div></section>
+    <section class="panel"><div class="panel-head"><h3>${scenario === 'transfer' ? 'The action contract' : 'The read contract'}</h3><span class="tag">${scenario === 'transfer' ? 'TRANSFER' : 'VALUATION'}</span></div>${scenario === 'transfer' ? `<ul class="policy-list">${checks.map(c=>`<li><span class="policy-state ${!bank.signedIn ? 'wait' : !c.ok ? 'fail' : ''}">${!bank.signedIn ? 'WAIT' : c.ok ? 'PASS' : 'BLOCK'}</span><div>${c.label}<small>${c.detail}</small></div></li>`).join('')}<li><span class="policy-state ${bank.instruction ? '' : 'wait'}">${bank.instruction ? 'BOUND' : 'WAIT'}</span><div>Approval of exact parameters<small>Customer, source, destination, amount, currency and proposal ID.</small></div></li></ul><p class="fine">Current checks for ${dollars(lastAmount)}. The execution gate also rejects a changed evidence version. These are implemented application policies, not automatic properties of a graph.</p>` : '<ul class="policy-list"><li><span class="policy-state">SCOPE</span><div>Only the signed-in customer’s portfolio<small>The object query enforces ownership before returning holdings.</small></div></li><li><span class="policy-state">READ</span><div>No trading action is authorized<small>A portfolio answer does not give the agent permission to rebalance.</small></div></li><li><span class="policy-state">AS OF</span><div>Value is tied to a quote snapshot<small>Quantity × price for each holding; all quotes use USD.</small></div></li></ul>'}</section>${renderExperiments()}`;
+  }
+
+  function renderExperiments() {
+    return `<section class="panel experiments"><span class="eyebrow">CHANGE THE WORLD, THEN TRY AGAIN</span><h3>${scenario === 'transfer' ? 'Will the old proposal still work?' : 'Will the old answer update itself?'}</h3><p>${scenario === 'transfer' ? 'Propose $150, introduce a $100 spend, then confirm. The old calculation leaves $550 after rent; the new one leaves $450 and breaches the $500 buffer.' : 'Ask for your portfolio, change the equity quote, then refresh. Compare the quoted snapshot and the source version.'}</p><div class="button-row">${scenario === 'transfer' ? `<button type="button" class="button" id="spend" ${!bank.signedIn || bank.available < 10000 ? 'disabled' : ''}>Simulate $100 card spend</button><button type="button" class="button" id="revoke" ${!bank.signedIn || !bank.canTransfer ? 'disabled' : ''}>Revoke transfer rights</button>` : `<button type="button" class="button" id="market" ${!bank.signedIn ? 'disabled' : ''}>Simulate equity price +10%</button>`}</div>${experiment ? `<p class="experiment-status" role="status">${escape(experiment)}</p>` : ''}</section>`;
+  }
+
+  function renderContext() {
+    const staleContext = observation && (scenario === 'portfolio' && observation.quoteVersion
+      ? observation.quoteVersion !== bank.quoteVersion
+        ? `Captured quotes v${observation.quoteVersion}; current source is v${bank.quoteVersion}. Refresh the portfolio to update this context.` : ''
+      : observation.balanceVersion !== bank.version
+        ? `Captured balance v${observation.balanceVersion}; current source is v${bank.version}. Prompt text alone is not current state.` : '');
+    return `<section class="panel"><span class="eyebrow">SAME REQUEST / CONVENTIONAL IMPLEMENTATION</span><h3>An agent can work with context and APIs.</h3><p>This view explains how the same task could be implemented without an ontology. It does not execute a second agent or a second transfer.</p><div class="context-step"><h3>1. Context: what the agent is told</h3><pre>${escape(JSON.stringify(observation || {status:'Sign in and ask a question to capture context.'},null,2))}</pre><p>A prompt can contain customer IDs, balances, rules and tool schemas. This snapshot changes only when the app refreshes it.</p></div><div class="context-step"><h3>2. Agent: interpret and select a capability</h3><p>${escape(lastRequest ? 'Request: “'+lastRequest+'”' : 'No request yet. Try a suggestion in the mobile app.')} A model can interpret language and choose a tool. This offline demo uses a small deterministic intent parser.</p></div><div class="context-step"><h3>3. Tools: call a defined interface</h3><pre>${scenario === 'transfer' ? 'getBalance("ACC-101")\ngetAccountRights("CUS-001", "ACC-101")\ntransfer(source, destination, amount, consent)' : 'getHoldings("PORT-001")\ngetQuotes(instrumentIds)\nsum(quantity × price)'}</pre><p>Tool schemas describe arguments and results. The service must still enforce permissions, consent, current funds and duplicate handling.</p></div><div class="warning">${staleContext || 'A well-designed conventional application can enforce the same rules. Context + tools is not inherently unsafe.'}</div></section><section class="panel"><h3>Where does the business meaning live?</h3><p>Without an ontology, identity mappings, account relationships, valuation logic and action policies can live in services, schemas and application code. The work is still necessary; it is organized differently.</p><p>With an ontology, those concepts form an explicit, reusable model that multiple tools and applications can share.</p></section>`;
+  }
+
+  function renderCompare() {
+    const rows = [
+      ['Identity','A prompt or API response includes an account ID.','An Account object has a stable key, typed properties and source mapping.'],
+      ['Relationships','Code joins customer, account and rights records.','AccountOwnership is a shared relationship with signing rights and role.'],
+      ['Business rules','Service logic validates funds, consent and account rights.','Governed actions reuse named object types and explicit preconditions. Services still enforce them.'],
+      ['Tool calls','The agent selects an API and supplies arguments.','The agent still calls tools; those tools query objects or invoke actions against shared contracts.'],
+      ['Freshness & execution','Fetch fresh data; reserve funds atomically; reconcile outcomes.','The same engineering is required. An ontology is not a ledger or an automatic freshness guarantee.'],
+      ['Reuse','Teams coordinate schemas and repeat mappings where needed.','Teams share the modeled meaning across chat, operations, analytics and other apps.']
+    ];
+    return `<section class="panel"><span class="eyebrow">DIFFERENT LAYERS, NOT COMPETING AGENTS</span><h3>The ontology is the shared business contract.</h3><p>Context is the information supplied for this turn. The agent interprets the request. Tools expose capabilities. The ontology describes the business entities, their relationships, and the actions allowed on them.</p><div class="comparison-row comparison-heading"><span>CONTEXT + AGENT + TOOLS</span><span>WITH AN ONTOLOGY</span></div>${rows.map(([title,a,b])=>`<div class="comparison-row"><div><h3>${title}</h3><p>${a}</p></div><p>${b}</p></div>`).join('')}</section><section class="panel experiments"><h3>When is it useful?</h3><p>When many workflows need the same definition of “customer,” “available funds,” or “approved transfer.” For a small, isolated feature, ordinary typed APIs and service logic may be sufficient.</p><p>The useful distinction is shared, explicit meaning and governance—not whether an agent can call a function.</p></section>`;
+  }
+
+  function renderTrace() {
+    return `<details class="trace" ${bank.trace.length ? 'open' : ''}><summary>Execution trace · ${bank.trace.length} ${bank.trace.length === 1 ? 'event' : 'events'}</summary><p class="fine">Observed simulator calls and results, not hidden model reasoning. Tool names and schema are illustrative.</p><ol>${bank.trace.length ? bank.trace.map(t=>`<li><details><summary class="trace-title">${String(t.step).padStart(2,'0')} / ${escape(t.tool)}<span>${escape(t.layer)}</span></summary><pre>${escape(JSON.stringify({input:t.input,output:t.output},null,2))}</pre></details></li>`).join('') : '<li class="fine">Sign in, then ask the agent to create a trace.</li>'}</ol></details>`;
+  }
+
+  function render(focusId) {
+    const active = document.activeElement;
+    const priorId = active?.id;
+    const priorObject = active?.dataset?.object;
+    const draft = q('#chat-input')?.value || '';
+    renderPhone();
+    q('#inspector').innerHTML = (tab === 'ontology' ? renderOntology() : tab === 'context' ? renderContext() : renderCompare()) + renderTrace();
+    document.querySelectorAll('[data-scenario]').forEach(button=>button.setAttribute('aria-pressed', String(button.dataset.scenario === scenario)));
+    document.querySelectorAll('[data-tab]').forEach(button=>button.setAttribute('aria-pressed', String(button.dataset.tab === tab)));
+    bind();
+    if (q('#chat-input')) q('#chat-input').value = draft;
+    const target = focusId ? q('#'+focusId) : priorId ? q('#'+priorId) : priorObject ? q(`[data-object="${priorObject}"]`) : null;
+    if (target && !target.disabled) target.focus({preventScroll:true});
+  }
+
+  function ask(text) {
+    if (!bank.signedIn || !text.trim()) return;
+    text = text.trim().slice(0,240);
+    lastRequest = text;
+    say(text,'user');
+    observation = {customerId:'CUS-001', checkingAvailable:dollars(bank.available), balanceVersion:bank.version, rent:dollars(bank.rent), minimumBuffer:dollars(bank.buffer), request:text};
+    if (/portfolio|investments|holdings/i.test(text)) {
+      scenario = 'portfolio'; selected = 'portfolio';
+      const result = bank.readPortfolio(/another|other|someone|jamie|jordan/i.test(text) ? 'CUS-OTHER' : 'CUS-001');
+      if (result.ok) observation = {...observation, portfolioId:result.portfolio.id, quoteVersion:result.portfolio.quoteVersion, holdings:result.portfolio.holdings.map(h=>({instrument:h.name,units:h.units,unitPrice:dollars(h.price)})), total:dollars(result.portfolio.total)};
+      say(result.ok ? `Your portfolio is ${dollars(result.portfolio.total)} across three holdings, using fictional USD quotes v${result.portfolio.quoteVersion}. I calculated each position as units × price. This is a read-only check; no trades were placed.` : result.message);
+    } else if (/^what can i (safely )?transfer\??$/i.test(text)) {
+      scenario = 'transfer'; selected = 'commitments';
+      say(bank.canTransfer ? `After reserving $900 for rent and a $500 buffer, the current maximum is ${dollars(Math.max(0,bank.available - bank.rent - bank.buffer))}. Ask “Transfer $150 to savings” to review an exact proposal.` : 'You can read this account, but transfer rights are revoked. No transfer can be authorized.');
+      bank.record('calculateSurplus', {accountId:'ACC-101', version:bank.version}, {maximumCents:Math.max(0,bank.available - bank.rent - bank.buffer),canTransfer:bank.canTransfer}, 'Function');
+    } else {
+      const match = text.match(/^(?:transfer|move)\s+\$?(\d+(?:\.\d{1,2})?)\s+(?:usd\s+)?to\s+(?:my\s+)?savings[.!]?$/i);
+      if (match) {
+        scenario = 'transfer'; selected = 'action';
+        lastAmount = Math.round(Number(match[1])*100);
+        const result = bank.propose(lastAmount);
+        say(result.ok ? `I can move ${dollars(lastAmount)} from your checking to your savings. That leaves ${dollars(bank.available-lastAmount-bank.rent)} after rent, above or equal to your $500 buffer. Review the exact details and confirm below.` : result.message);
+      } else {
+        say('This scripted demo understands “Transfer $150 to savings,” “What can I safely transfer?” and “Check my portfolio.” Use an exact USD amount and your savings account. Other requests do not execute anything.');
+      }
+    }
+    if (q('#chat-input')) q('#chat-input').value = '';
+    render('chat-input');
+  }
+
+  function bind() {
+    if (q('#login')) q('#login').onclick = () => {
+      bank.login();
+      say('Hi Alex. I can help you move money to savings or check your portfolio. You approve every transfer. Choose a suggestion below.');
+      render('chat-input');
+    };
+    document.querySelectorAll('[data-prompt]').forEach(button=>button.onclick=()=>ask(button.dataset.prompt));
+    document.querySelectorAll('[data-object]').forEach(button=>button.onclick=()=>{selected=button.dataset.object;render();});
+    if (q('#chat-form')) q('#chat-form').onsubmit = event => {event.preventDefault();ask(q('#chat-input').value);};
+    if (q('#confirm')) q('#confirm').onclick = () => {const result=bank.confirm(bank.proposal.id);say(result.message);render(result.ok ? 'settle' : 'chat-input');};
+    if (q('#cancel')) q('#cancel').onclick = () => {bank.proposal.status='Cancelled';say('Proposal cancelled. No money moved. Ask again to create a new proposal.');render('chat-input');};
+    for (const [id,success] of [['settle',true],['fail',false]]) if (q('#'+id)) q('#'+id).onclick=()=>{say(bank.resolve(success).message);render('chat-input');};
+    if (q('#spend')) q('#spend').onclick=()=>{bank.spend();experiment=`Source updated to v${bank.version}: checking now has ${dollars(bank.available)} available. Any old proposal keeps its old evidence version.`;render();q('#announcement').textContent=experiment;};
+    if (q('#revoke')) q('#revoke').onclick=()=>{bank.revoke();experiment='OWN-001 now permits reads only. A pending proposal cannot authorize a transfer. Reset the demo to restore rights.';render('chat-input');q('#announcement').textContent=experiment;};
+    if (q('#market')) q('#market').onclick=()=>{bank.moveMarket();experiment=`Equity price is now ${dollars(bank.holdings[0].price)}, source v${bank.quoteVersion}. Refresh the portfolio to calculate a new answer.`;render();q('#announcement').textContent=experiment;};
+    if (q('#refresh-portfolio')) q('#refresh-portfolio').onclick=()=>ask('Check my portfolio');
+  }
+
+  document.querySelectorAll('[data-tab]').forEach(button=>button.onclick=()=>{tab=button.dataset.tab;render();});
+  document.querySelectorAll('[data-scenario]').forEach(button=>button.onclick=()=>{
+    scenario=button.dataset.scenario;selected='customer';experiment='';
+    if (bank.proposal?.status === 'Proposed') {bank.proposal.status='Cancelled';say('The unsubmitted proposal was cancelled when you changed journeys. Ask again to review a fresh proposal.');}
+    render();
+  });
+  q('#reset').onclick=()=>{bank=new BankLabModel();messages=[];observation=null;lastRequest='';lastAmount=15000;experiment='';selected='customer';render('login');q('#announcement').textContent='Demo reset. All balances and permissions restored.';};
+  render();
+})();
+</script>
 </body>
 </html>

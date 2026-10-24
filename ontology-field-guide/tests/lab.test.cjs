@@ -70,9 +70,19 @@ assert.equal(portfolio.available,160000,'portfolio reads never debit');
   const {parseHTML}=await import('./vendor/linkedom.mjs');
   const root=path.join(__dirname,'../dist');
   const {document}=parseHTML(fs.readFileSync(path.join(root,'demo.html'),'utf8'));
+  assert.equal(document.querySelectorAll('[src],link[rel="stylesheet"]').length,0,'standalone HTML has no external assets');
+  for (const link of document.querySelectorAll('a[href]')) assert.ok(link.getAttribute('href').startsWith('#'),'all navigation stays inside the standalone file');
+  const crypto=require('node:crypto');
+  const policy=document.querySelector('meta[http-equiv="Content-Security-Policy"]').getAttribute('content');
+  for(const [id,file] of [['lab-styles','lab.css'],['lab-model','lab-model.js'],['lab-app','lab.js']]) {
+    const embedded=document.getElementById(id).textContent;
+    assert.equal(embedded,'\n'+fs.readFileSync(path.join(root,file),'utf8'),`embedded ${file} matches maintained source`);
+    const hash=crypto.createHash('sha256').update(embedded).digest('base64');
+    assert.ok(policy.includes(`'sha256-${hash}'`),`CSP authorizes embedded ${file}`);
+  }
   const context={document,Intl,console};
   vm.createContext(context);
-  for(const file of ['lab-model.js','lab.js']) vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context,{filename:file});
+  for(const id of ['lab-model','lab-app']) vm.runInContext(document.getElementById(id).textContent,context,{filename:`demo.html#${id}`});
   const q=selector=>document.querySelector(selector);
   const click=selector=>{assert.ok(q(selector),`control ${selector}`);q(selector).onclick();};
   const ask=text=>{q('#chat-input').value=text;q('#chat-form').onsubmit({preventDefault(){}});};

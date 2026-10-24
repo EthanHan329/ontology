@@ -8,7 +8,7 @@ Open [dist/index.html](dist/index.html) directly. No build, installation, hostin
 
 ### Interactive banking lab
 
-Open [dist/demo.html](dist/demo.html) for the hands-on mobile banking experience. Sign in as Alex, chat with the scripted assistant, and inspect the business objects beside the conversation. Its in-memory session is independent of the chapter payment workflow.
+Open [dist/demo.html](dist/demo.html) for the hands-on mobile banking experience. This is a single self-contained HTML file: copy or share just this file, then double-click it. All styles, scripts and fictional data are embedded; no sibling files, server, installation or internet are needed. Sign in as Alex, chat with the scripted assistant, and inspect the business objects beside the conversation. Its in-memory session is independent of the chapter payment workflow.
 
 - Transfer $150 from checking to savings, approve the exact proposal, then simulate settlement or definitive failure.
 - Propose a transfer, simulate a $100 card spend, and confirm to see stale-state rejection. Revoke signing rights to see why read access is not payment authority.
