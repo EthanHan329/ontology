@@ -4,7 +4,7 @@
   "private": true,
   "description": "Offline Palantir Ontology study guide using agentic everyday banking throughout",
   "scripts": {
-    "test": "node --check dist/app.js && node --check dist/model.js && node --check dist/banking.js && node --test tests/model.test.cjs && node tests/app.test.cjs && node tests/banking.test.cjs && python3 tests/check_artifacts.py",
+    "test": "node --check dist/app.js && node --check dist/model.js && node --check dist/banking.js && node --check dist/lab-model.js && node --check dist/lab.js && node --test tests/model.test.cjs && node tests/app.test.cjs && node tests/banking.test.cjs && node tests/lab.test.cjs && python3 tests/check_artifacts.py",
     "start": "python3 -m http.server 8765 --directory dist"
   }
 }

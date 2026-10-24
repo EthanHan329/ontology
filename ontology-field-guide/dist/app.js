@@ -27,7 +27,7 @@ const questions=[
   {tag:'AI & ABSTRACTION',q:'What does an Ontology give an agentic banking workflow?',options:['Governed business objects and callable capabilities; exact interface and SDK support must be checked','A guarantee that every generated answer is correct','A built-in universal banking ledger and automatic consent'],answer:0,why:'The banking schema and tools are application design. Ontology concepts provide shared contracts; they do not replace authentication, a ledger, or model evaluation.'}
 ];
 const pages={
-  banking:BankingDemo.view,
+  banking:()=>`<div class="actions" style="margin:0 0 28px"><a class="btn primary" href="demo.html">Open the interactive banking lab →</a><span class="bodycopy">Sign in, chat, transfer, and inspect what the ontology adds.</span></div>${BankingDemo.view()}`,
   overview() {
     return `<div class="hero-row"><div>${intro('02','A banking world model.<br>Built to <em>take action.</em>','An agent can understand “pay my bill” only when customer identity, account rights, funds, obligations and permitted actions have shared meaning. The Ontology connects that context to governed operations.')}<div class="actions"><a class="btn primary" href="#explorer">Explore the banking objects →</a><a class="btn" href="#decisions">Run the payment workflow →</a></div></div><div class="stamp">ONE RUNNING EXAMPLE<br>16 candidate object types<br>4 everyday customer journeys<br>1 shared payment lifecycle</div></div>
     ${BankingDemo.world()}

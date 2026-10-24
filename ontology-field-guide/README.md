@@ -6,6 +6,18 @@ An offline, independent study of Palantir Ontology through one consistent bankin
 
 Open [dist/index.html](dist/index.html) directly. No build, installation, hosting, account or internet connection is required.
 
+### Interactive banking lab
+
+Open [dist/demo.html](dist/demo.html) for the hands-on mobile banking experience. Sign in as Alex, chat with the scripted assistant, and inspect the business objects beside the conversation. Its in-memory session is independent of the chapter payment workflow.
+
+- Transfer $150 from checking to savings, approve the exact proposal, then simulate settlement or definitive failure.
+- Propose a transfer, simulate a $100 card spend, and confirm to see stale-state rejection. Revoke signing rights to see why read access is not payment authority.
+- Check a $50,000 portfolio, inspect holdings and versioned quotes, simulate a price change, then refresh the calculation.
+- Compare the ontology with context, an agent, and ordinary tool calls. The comparison explains that conventional services can enforce the same safeguards; ontology makes business meaning and contracts explicit and reusable.
+- Inspect actual local simulator inputs and results in the execution trace. This is deterministic application logic, not a live language model or bank API.
+
+Supported chat examples: `Transfer $100 to savings`, `What can I safely transfer?`, `Check my portfolio`, and `Show another customer's portfolio` (access denied). Other requests return guidance without executing an action. Reset or reload restores all fixtures.
+
 The seven chapters cover:
 
 1. Everyday banking: sixteen object types and four customer journeys.
@@ -37,7 +49,7 @@ With Node.js and Python installed, run:
 npm test
 ~~~
 
-No npm install is required. Test dependencies and license notices are included locally under tests/vendor/. The suite checks the banking calculation, seven chapter DOMs, shared workflow state, exact consent, failure paths, quiz, documentation and offline assets. Browser screenshot and Lighthouse verification remain unavailable.
+No npm install is required. Test dependencies and license notices are included locally under tests/vendor/. The suite checks the banking calculation, seven chapter DOMs, shared workflow state, exact consent, failure paths, quiz, documentation, interactive lab and offline assets. The lab was also exercised directly from local files in installed Chrome at 390, 820, 1440 and 1920px, with phone and desktop captures under both OS color preferences. It intentionally retains the guide's light theme. Lighthouse and screen-reader audits were not run; no scores or conformance claims are implied.
 
 ## Local-only policy
 

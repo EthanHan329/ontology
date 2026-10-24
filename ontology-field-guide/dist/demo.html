@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="An offline interactive banking lab: chat with a simulated agent, transfer funds, inspect a portfolio, and discover what an ontology adds to context and tools.">
+  <title>Inside an agentic bank — Ontology Lab</title>
+  <link rel="stylesheet" href="lab.css">
+  <script src="lab-model.js" defer></script>
+  <script src="lab.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#lab">Skip to interactive demo</a>
+  <header class="lab-header"><a href="index.html" class="lab-brand"><span aria-hidden="true">◈</span> ONTOLOGY <span class="brand-sub">/ THE INTERACTIVE LAB</span></a><a href="index.html">Back to the field guide <span aria-hidden="true">↗</span></a></header>
+  <main>
+    <section class="lab-intro" aria-labelledby="title"><div><p class="eyebrow">ONE CUSTOMER. TWO LAYERS OF UNDERSTANDING.</p><h1 id="title">Inside an <em>agentic bank.</em></h1><p class="lede">A customer sees a conversation. Behind it: identities, relationships, rules, and actions. Play both sides to see what an ontology adds.</p></div><div class="demo-note"><span class="status-dot" aria-hidden="true"></span> LOCAL SIMULATION<p>Fictional data · Scripted agent<br>No real login or money movement</p></div></section>
+    <ol class="journey" aria-label="Demo walkthrough"><li><b>01</b> Sign in as Alex</li><li><b>02</b> Ask the agent</li><li><b>03</b> Inspect the model</li><li><b>04</b> Test a boundary</li></ol>
+    <div class="lab-toolbar"><div><span class="eyebrow">TRY A CUSTOMER JOURNEY</span><div class="scenario-buttons"><button type="button" data-scenario="transfer" aria-pressed="true">01 / Money transfer</button><button type="button" data-scenario="portfolio" aria-pressed="false">02 / Portfolio check</button></div></div><button type="button" class="button" id="reset">Reset demo <span aria-hidden="true">↻</span></button></div>
+    <div class="lab-grid" id="lab" tabindex="-1">
+      <section aria-labelledby="customer-title"><div class="pane-label"><h2 id="customer-title">The customer experience</h2><span>FRONTSTAGE</span></div><div class="phone" id="phone"></div><p class="phone-caption">A simulated mobile app. Try the suggestions or type a supported request.</p></section>
+      <section class="workbench" aria-labelledby="behind-title"><div class="pane-label"><h2 id="behind-title">What makes the answer actionable?</h2><span>BACKSTAGE</span></div><div class="inspector-tabs" role="group" aria-label="Explanation view"><button type="button" data-tab="ontology" aria-pressed="true">With ontology</button><button type="button" data-tab="context" aria-pressed="false">Context + tools</button><button type="button" data-tab="compare" aria-pressed="false">The difference</button></div><div id="inspector"></div></section>
+    </div>
+    <section class="takeaway"><span class="eyebrow">THE IDEA TO TAKE AWAY</span><h2>Context tells the agent something.<br>An ontology defines what that something <em>means.</em></h2><p>Tools still do the work. The ontology gives them shared objects, relationships and action contracts. Authentication, permissions, freshness checks and reliable execution still need to be implemented and enforced.</p></section>
+  </main>
+  <footer><span>ONTOLOGY FIELD GUIDE / LEARN BY DOING</span><span>Runs entirely on this device. Reset or reload to start over.</span></footer>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+  <noscript>This interactive demo requires JavaScript. Enable it locally; no internet connection is needed.</noscript>
+</body>
+</html>

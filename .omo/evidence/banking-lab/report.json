@@ -1,0 +1,454 @@
+{
+  "passed": true,
+  "captures": 56,
+  "checks": [
+    {
+      "name": "desktop-light-login",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2007,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-signed-in",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2106,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-proposal",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2339,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-context",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2172,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-rejected",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2526,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-queued",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2477,
+      "focus": "settle",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-settled",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2546,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-portfolio",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2508,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-stale-quotes",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2609,
+      "focus": "market",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-portfolio-context",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2901,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-refreshed",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2747,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-access-denied",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2816,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-light-comparison",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2733,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-login",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2007,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-signed-in",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2106,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-proposal",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2339,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-context",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2172,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-rejected",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2526,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-queued",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2477,
+      "focus": "settle",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-settled",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2546,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-portfolio",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2508,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-stale-quotes",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2609,
+      "focus": "market",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-portfolio-context",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2901,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-refreshed",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2747,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-access-denied",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2816,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "desktop-dark-comparison",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2733,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-login",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 3203,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-signed-in",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 3534,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-proposal",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4031,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-context",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 3697,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-rejected",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 3976,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-queued",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4133,
+      "focus": "settle",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-settled",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4088,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-portfolio",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4211,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-stale-quotes",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4403,
+      "focus": "market",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-portfolio-context",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4597,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-refreshed",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4469,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-access-denied",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4538,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-light-comparison",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4534,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-login",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 3203,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-signed-in",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 3534,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-proposal",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4031,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-context",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 3697,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-rejected",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 3976,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-queued",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4133,
+      "focus": "settle",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-settled",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4088,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-portfolio",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4211,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-stale-quotes",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4403,
+      "focus": "market",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-portfolio-context",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4597,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-refreshed",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4469,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-access-denied",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4538,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "phone-dark-comparison",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 4534,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "tablet-login",
+      "width": 820,
+      "scrollWidth": 820,
+      "height": 2750,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "tablet-failed",
+      "width": 820,
+      "scrollWidth": 820,
+      "height": 3603,
+      "focus": "chat-input",
+      "smallTargets": []
+    },
+    {
+      "name": "wide-login",
+      "width": 1920,
+      "scrollWidth": 1920,
+      "height": 2007,
+      "focus": "",
+      "smallTargets": []
+    },
+    {
+      "name": "wide-rights-rejected",
+      "width": 1920,
+      "scrollWidth": 1920,
+      "height": 2508,
+      "focus": "chat-input",
+      "smallTargets": []
+    }
+  ]
+}
